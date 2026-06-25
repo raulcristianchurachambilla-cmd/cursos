@@ -3,204 +3,274 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sílabos 2026-I — FINESI / UNAP</title>
+<title>Sílabos 2026-I · FINESI — UNAP</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --azul:     #1a56db;
-    --azul-bg:  #eff6ff;
-    --azul-brd: #bfdbfe;
-    --gris:     #f8fafc;
-    --borde:    #e2e8f0;
-    --texto:    #1e293b;
-    --muted:    #64748b;
-    --badge-bg: #dbeafe;
-    --badge-tx: #1e40af;
-    --white:    #ffffff;
-    --radius:   8px;
-    --sombra:   0 1px 3px rgba(0,0,0,.08);
+    --azul:      #0d3b66;
+    --azul-2:    #14507f;
+    --azul-bg:   #eef4fa;
+    --azul-brd:  #cfe0f1;
+    --dorado:    #c9962f;
+    --dorado-bg: #fdf6e8;
+    --gris:      #f7f8fa;
+    --borde:     #e3e7ed;
+    --texto:     #1d2733;
+    --muted:     #677183;
+    --white:     #ffffff;
+    --radius:    10px;
+    --sombra:    0 1px 3px rgba(13,59,102,.08);
+    --sombra-lg: 0 10px 30px rgba(13,59,102,.12);
   }
 
+  html { scroll-behavior: smooth; }
+
   body {
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    background: #f1f5f9;
+    font-family: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+    background: #eef1f5;
     color: var(--texto);
     min-height: 100vh;
     line-height: 1.6;
   }
 
-  /* ── HEADER ── */
+  /* ══════════ HEADER INSTITUCIONAL ══════════ */
   header {
-    background: var(--azul);
+    background: linear-gradient(135deg, var(--azul) 0%, var(--azul-2) 100%);
     color: #fff;
-    padding: 2rem 1.5rem 1.5rem;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--dorado) 0%, #e8c873 50%, var(--dorado) 100%);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1.75rem 1.5rem 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .logos-row {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    flex-shrink: 0;
+  }
+  .logo-badge {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,.18);
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,.6);
+  }
+  .logo-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 4px;
+  }
+  .logo-fallback {
+    font-weight: 800;
+    font-size: .78rem;
+    color: var(--azul);
+    letter-spacing: .02em;
     text-align: center;
+    line-height: 1.1;
   }
-  header .sup {
-    font-size: .75rem;
-    letter-spacing: .12em;
+  .header-divider {
+    width: 1px;
+    height: 48px;
+    background: rgba(255,255,255,.25);
+  }
+  .header-text { flex: 1; min-width: 0; }
+  .header-text .sup {
+    font-size: .72rem;
+    letter-spacing: .14em;
     text-transform: uppercase;
-    opacity: .8;
-    margin-bottom: .4rem;
+    opacity: .82;
+    margin-bottom: .3rem;
+    font-weight: 600;
   }
-  header h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
+  .header-text h1 {
+    font-size: 1.55rem;
+    font-weight: 800;
     margin-bottom: .25rem;
+    letter-spacing: -.01em;
   }
-  header .meta {
-    font-size: .85rem;
-    opacity: .75;
-    margin-top: .4rem;
+  .header-text .meta {
+    font-size: .84rem;
+    opacity: .8;
+    margin-top: .15rem;
   }
 
-  /* ── TABS ── */
+  /* ══════════ TABS ══════════ */
   .tabs-wrap {
     background: var(--white);
     border-bottom: 1px solid var(--borde);
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 6px rgba(0,0,0,.06);
+    box-shadow: 0 2px 8px rgba(13,59,102,.06);
   }
   .tabs {
     display: flex;
     overflow-x: auto;
     scrollbar-width: none;
-    max-width: 960px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 1rem;
   }
   .tabs::-webkit-scrollbar { display: none; }
   .tab-btn {
     flex-shrink: 0;
-    padding: .85rem 1.1rem;
+    padding: .9rem 1.15rem;
     font-size: .82rem;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--muted);
     background: none;
     border: none;
-    border-bottom: 2.5px solid transparent;
+    border-bottom: 3px solid transparent;
     cursor: pointer;
     transition: color .15s, border-color .15s;
     white-space: nowrap;
+    font-family: inherit;
   }
   .tab-btn:hover { color: var(--azul); }
   .tab-btn.active {
     color: var(--azul);
-    border-bottom-color: var(--azul);
-    font-weight: 600;
+    border-bottom-color: var(--dorado);
   }
 
-  /* ── CONTENT ── */
+  /* ══════════ CONTENT ══════════ */
   .content {
-    max-width: 960px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 2rem 1.5rem 4rem;
+    padding: 2.25rem 1.5rem 4rem;
   }
   .panel { display: none; }
-  .panel.active { display: block; }
+  .panel.active { display: block; animation: fadein .25s ease; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
-  /* ── CARDS ── */
+  /* ══════════ CARDS ══════════ */
   .card {
     background: var(--white);
     border: 1px solid var(--borde);
     border-radius: var(--radius);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.4rem;
     box-shadow: var(--sombra);
+    overflow: hidden;
   }
   .card-header {
-    padding: 1rem 1.25rem;
+    padding: 1.1rem 1.4rem;
     border-bottom: 1px solid var(--borde);
     display: flex;
     align-items: center;
-    gap: .6rem;
+    gap: .75rem;
+    background: linear-gradient(180deg, #fafbfd 0%, #ffffff 100%);
   }
   .card-header h2 {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.08rem;
+    font-weight: 700;
     flex: 1;
+    color: var(--azul);
   }
-  .card-body { padding: 1.25rem; }
+  .card-body { padding: 1.4rem; }
 
-  /* ── HERO INFO ── */
+  /* ══════════ HERO INFO GRID ══════════ */
   .hero-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.6rem;
   }
   .info-pair {
     background: var(--gris);
     border: 1px solid var(--borde);
-    border-radius: var(--radius);
-    padding: .85rem 1rem;
+    border-left: 3px solid var(--azul-2);
+    border-radius: 6px;
+    padding: .8rem 1rem;
   }
   .info-pair .lbl {
-    font-size: .72rem;
+    font-size: .68rem;
     color: var(--muted);
     text-transform: uppercase;
     letter-spacing: .08em;
     margin-bottom: .25rem;
+    font-weight: 600;
   }
   .info-pair .val {
-    font-size: .92rem;
+    font-size: .9rem;
     font-weight: 600;
     color: var(--texto);
   }
 
-  /* ── BADGES ── */
+  /* ══════════ BADGES ══════════ */
   .badge {
     display: inline-block;
-    font-size: .7rem;
-    font-weight: 600;
-    padding: .15rem .55rem;
+    font-size: .68rem;
+    font-weight: 700;
+    padding: .2rem .6rem;
     border-radius: 20px;
-    background: var(--badge-bg);
-    color: var(--badge-tx);
+    background: var(--azul-bg);
+    color: var(--azul-2);
     white-space: nowrap;
   }
-  .badge.green { background: #dcfce7; color: #166534; }
-  .badge.amber { background: #fef3c7; color: #92400e; }
-  .badge.gray  { background: #f1f5f9; color: #475569; border: 1px solid var(--borde); }
+  .badge.green { background: #e3f6ea; color: #166b3f; }
+  .badge.amber { background: var(--dorado-bg); color: #8a6213; }
+  .badge.gray  { background: #f1f3f6; color: #5b6373; border: 1px solid var(--borde); }
 
-  /* ── TABLE ── */
-  table { width: 100%; border-collapse: collapse; font-size: .86rem; }
+  /* ══════════ TABLE ══════════ */
+  table { width: 100%; border-collapse: collapse; font-size: .85rem; }
   th {
     background: var(--gris);
     text-align: left;
-    padding: .6rem .85rem;
-    font-size: .75rem;
-    font-weight: 600;
+    padding: .65rem .9rem;
+    font-size: .72rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .06em;
     color: var(--muted);
     border-bottom: 1px solid var(--borde);
   }
   td {
-    padding: .65rem .85rem;
+    padding: .68rem .9rem;
     border-bottom: 1px solid var(--borde);
     vertical-align: top;
   }
   tr:last-child td { border-bottom: none; }
   tr:hover td { background: #f8fafc; }
-  td:first-child { font-weight: 600; white-space: nowrap; color: var(--azul); }
+  td:first-child { font-weight: 700; white-space: nowrap; color: var(--azul-2); }
 
-  /* ── ICON DOTS ── */
+  /* ══════════ ICON DOT ══════════ */
   .dot {
-    width: 32px; height: 32px;
-    border-radius: 8px;
+    width: 38px; height: 38px;
+    border-radius: 9px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1rem;
+    font-size: .78rem;
+    font-weight: 800;
     flex-shrink: 0;
+    line-height: 1.1;
+    text-align: center;
   }
 
-  /* ── UNIT BLOCKS ── */
+  /* ══════════ UNIT BLOCKS ══════════ */
   .unit-block {
     border: 1px solid var(--borde);
     border-radius: var(--radius);
-    margin-bottom: 1rem;
+    margin-bottom: 1.1rem;
     overflow: hidden;
   }
   .unit-header {
@@ -210,59 +280,62 @@
     display: flex;
     align-items: center;
     gap: .7rem;
+    flex-wrap: wrap;
   }
-  .unit-header h3 { font-size: .95rem; font-weight: 600; color: var(--azul); flex: 1; }
-  .unit-header .period { font-size: .78rem; color: #3b82f6; }
+  .unit-header h3 { font-size: .94rem; font-weight: 700; color: var(--azul); flex: 1; }
+  .unit-header .period { font-size: .76rem; color: var(--azul-2); font-weight: 600; }
 
-  /* ── FORMULA ── */
+  /* ══════════ FORMULA ══════════ */
   .formula {
     font-family: 'Courier New', monospace;
-    font-size: .85rem;
+    font-size: .84rem;
     background: var(--gris);
     border: 1px solid var(--borde);
-    border-radius: var(--radius);
-    padding: .85rem 1.1rem;
-    margin-bottom: .75rem;
-    line-height: 1.8;
+    border-left: 3px solid var(--dorado);
+    border-radius: 6px;
+    padding: .9rem 1.1rem;
+    margin-bottom: .8rem;
+    line-height: 1.85;
   }
 
-  /* ── BIBLIO ── */
+  /* ══════════ BIBLIO ══════════ */
   .biblio-item {
     padding: .6rem 0;
     border-bottom: 1px solid var(--borde);
-    font-size: .86rem;
+    font-size: .85rem;
   }
   .biblio-item:last-child { border-bottom: none; }
-  .biblio-item a { color: var(--azul); text-decoration: none; word-break: break-all; }
+  .biblio-item a { color: var(--azul-2); text-decoration: none; word-break: break-word; }
   .biblio-item a:hover { text-decoration: underline; }
 
-  /* ── OVERVIEW CARDS ── */
+  /* ══════════ OVERVIEW CARDS ══════════ */
   .overview-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 1.1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.2rem;
   }
   .ov-card {
     background: var(--white);
     border: 1px solid var(--borde);
     border-radius: var(--radius);
-    padding: 1.1rem 1.25rem;
+    padding: 1.15rem 1.3rem;
     box-shadow: var(--sombra);
     cursor: pointer;
-    transition: box-shadow .15s, border-color .15s;
+    transition: box-shadow .15s, border-color .15s, transform .15s;
   }
   .ov-card:hover {
-    box-shadow: 0 4px 12px rgba(26,86,219,.12);
+    box-shadow: var(--sombra-lg);
     border-color: var(--azul-brd);
+    transform: translateY(-2px);
   }
-  .ov-card .curso-code { font-size: .72rem; color: var(--muted); margin-bottom: .3rem; }
-  .ov-card .curso-name { font-size: 1rem; font-weight: 600; margin-bottom: .55rem; }
+  .ov-card .curso-code { font-size: .7rem; color: var(--muted); margin-bottom: .3rem; font-weight: 600; letter-spacing: .05em; }
+  .ov-card .curso-name { font-size: 1rem; font-weight: 700; margin-bottom: .6rem; color: var(--texto); }
   .ov-card .curso-meta { display: flex; gap: .4rem; flex-wrap: wrap; }
 
-  /* ── SECTION TITLE ── */
+  /* ══════════ SECTION TITLE ══════════ */
   .section-title {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     margin-bottom: 1rem;
     padding-bottom: .5rem;
@@ -270,40 +343,75 @@
     color: var(--azul);
   }
 
-  /* ── EMPTY ── */
+  /* ══════════ EMPTY ══════════ */
   .empty {
     text-align: center;
     color: var(--muted);
-    padding: 2.5rem;
-    font-size: .9rem;
+    padding: 2.2rem;
+    font-size: .88rem;
     background: var(--gris);
     border-radius: var(--radius);
     border: 1px dashed var(--borde);
   }
 
-  /* ── FOOTER ── */
+  /* ══════════ FOOTER ══════════ */
   footer {
     text-align: center;
     font-size: .78rem;
     color: var(--muted);
-    padding: 1.5rem;
+    padding: 1.8rem 1.5rem;
     border-top: 1px solid var(--borde);
     background: var(--white);
     margin-top: 2rem;
   }
+  footer .foot-logos {
+    display: flex;
+    justify-content: center;
+    gap: .6rem;
+    margin-bottom: .7rem;
+    opacity: .7;
+  }
+  footer .foot-logos .mini {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--azul-bg);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  footer .foot-logos .mini img { width: 100%; height: 100%; object-fit: contain; padding: 2px; }
 
-  @media (max-width: 600px) {
-    header h1 { font-size: 1.15rem; }
-    .content { padding: 1.25rem 1rem 3rem; }
+  @media (max-width: 640px) {
+    .header-inner { padding: 1.4rem 1.1rem 1.3rem; gap: 1rem; }
+    .logo-badge { width: 50px; height: 50px; }
+    .header-divider { display: none; }
+    .header-text h1 { font-size: 1.2rem; }
+    .content { padding: 1.4rem 1rem 3rem; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="sup">Universidad Nacional del Altiplano · FINESI</div>
-  <h1>Sílabos Semestre 2026-I</h1>
-  <div class="meta">Ingeniería Estadística e Informática &nbsp;·&nbsp; VI Ciclo &nbsp;·&nbsp; Del 30 de Marzo al 31 de Julio de 2026</div>
+  <div class="header-inner">
+    <div class="logos-row">
+      <div class="logo-badge" title="Universidad Nacional del Altiplano">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Escudo_de_la_Universidad_Nacional_del_Altiplano.png"
+             alt="Logo UNAP"
+             onerror="this.parentElement.innerHTML='<div class=&quot;logo-fallback&quot;>UNAP</div>'">
+      </div>
+      <div class="logo-badge" title="FINESI">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2jyxhjmoXirp3MoGkrLaCeBit56dyDI9bKg&s"
+             alt="Logo FINESI"
+             onerror="this.parentElement.innerHTML='<div class=&quot;logo-fallback&quot;>FINESI</div>'">
+      </div>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-text">
+      <div class="sup">Universidad Nacional del Altiplano · FINESI</div>
+      <h1>Consolidado de Sílabos — Semestre 2026-I</h1>
+      <div class="meta">Ingeniería Estadística e Informática · VI Ciclo · Del 30 de marzo al 31 de julio de 2026</div>
+    </div>
+  </div>
 </header>
 
 <div class="tabs-wrap">
@@ -311,8 +419,8 @@
     <button class="tab-btn active" onclick="showTab('resumen')">📋 Resumen</button>
     <button class="tab-btn" onclick="showTab('est209')">Regresión Lineal</button>
     <button class="tab-btn" onclick="showTab('est210')">Modelos Lineales</button>
-    <button class="tab-btn" onclick="showTab('est314')">Aprendizaje No Supervisado</button>
-    <button class="tab-btn" onclick="showTab('est315')">Gestión de Proyectos TIC</button>
+    <button class="tab-btn" onclick="showTab('est314')">Aprend. No Supervisado</button>
+    <button class="tab-btn" onclick="showTab('est315')">Gestión Proyectos TIC</button>
     <button class="tab-btn" onclick="showTab('est316')">Arquitectura de Redes</button>
     <button class="tab-btn" onclick="showTab('est317')">Series de Tiempo</button>
   </div>
@@ -326,76 +434,76 @@
     <div class="overview-grid">
 
       <div class="ov-card" onclick="showTab('est209')">
-        <div class="curso-code">EST209</div>
+        <div class="curso-code">EST209 · CICLO VI</div>
         <div class="curso-name">Regresión Lineal y No Lineal</div>
         <div class="curso-meta">
           <span class="badge">4 créditos</span>
-          <span class="badge gray">5h/semana</span>
+          <span class="badge gray">5 h/sem</span>
           <span class="badge green">Intermedio</span>
         </div>
-        <p style="font-size:.8rem;color:var(--muted);margin-top:.65rem;">Doc. Vargas Valverde Confesor Milan</p>
+        <p style="font-size:.8rem;color:var(--muted);margin-top:.7rem;">Doc. Vargas Valverde Confesor Milan</p>
       </div>
 
       <div class="ov-card" onclick="showTab('est210')">
-        <div class="curso-code">EST210</div>
+        <div class="curso-code">EST210 · CICLO VI</div>
         <div class="curso-name">Modelos Lineales</div>
         <div class="curso-meta">
           <span class="badge">5 créditos</span>
-          <span class="badge gray">6h/semana</span>
+          <span class="badge gray">6 h/sem</span>
           <span class="badge amber">Avanzado</span>
         </div>
-        <p style="font-size:.8rem;color:var(--muted);margin-top:.65rem;">Doc. Morillos Valderrama Santos Octavio</p>
+        <p style="font-size:.8rem;color:var(--muted);margin-top:.7rem;">Doc. Morillos Valderrama Santos Octavio</p>
       </div>
 
       <div class="ov-card" onclick="showTab('est314')">
-        <div class="curso-code">EST314</div>
+        <div class="curso-code">EST314 · CICLO VI</div>
         <div class="curso-name">Aprendizaje No Supervisado</div>
         <div class="curso-meta">
           <span class="badge">4 créditos</span>
-          <span class="badge gray">5h/semana</span>
+          <span class="badge gray">5 h/sem</span>
           <span class="badge amber">Avanzado</span>
         </div>
-        <p style="font-size:.8rem;color:var(--muted);margin-top:.65rem;">Doc. Alemán Gonzales Leonid</p>
+        <p style="font-size:.8rem;color:var(--muted);margin-top:.7rem;">Doc. Alemán Gonzales Leonid</p>
       </div>
 
       <div class="ov-card" onclick="showTab('est315')">
-        <div class="curso-code">EST315</div>
+        <div class="curso-code">EST315 · CICLO VI</div>
         <div class="curso-name">Gestión de Proyectos TIC</div>
         <div class="curso-meta">
           <span class="badge">4 créditos</span>
-          <span class="badge gray">5h/semana</span>
+          <span class="badge gray">5 h/sem</span>
           <span class="badge green">Básico</span>
         </div>
-        <p style="font-size:.8rem;color:var(--muted);margin-top:.65rem;">Doc. Melgarejo Bolivar Romel Percy</p>
+        <p style="font-size:.8rem;color:var(--muted);margin-top:.7rem;">Doc. Melgarejo Bolivar Romel Percy</p>
       </div>
 
       <div class="ov-card" onclick="showTab('est316')">
-        <div class="curso-code">EST316</div>
+        <div class="curso-code">EST316 · CICLO VI</div>
         <div class="curso-name">Arquitectura de Redes y Protocolos</div>
         <div class="curso-meta">
           <span class="badge">3 créditos</span>
-          <span class="badge gray">4h/semana</span>
+          <span class="badge gray">4 h/sem</span>
           <span class="badge green">Básico</span>
         </div>
-        <p style="font-size:.8rem;color:var(--muted);margin-top:.65rem;">Doc. Apaza Tarqui Alejandro</p>
+        <p style="font-size:.8rem;color:var(--muted);margin-top:.7rem;">Doc. Apaza Tarqui Alejandro</p>
       </div>
 
       <div class="ov-card" onclick="showTab('est317')">
-        <div class="curso-code">EST317</div>
+        <div class="curso-code">EST317 · CICLO VI</div>
         <div class="curso-name">Series de Tiempo</div>
         <div class="curso-meta">
           <span class="badge">4 créditos</span>
-          <span class="badge gray">5h/semana</span>
+          <span class="badge gray">5 h/sem</span>
           <span class="badge amber">Avanzado</span>
         </div>
-        <p style="font-size:.8rem;color:var(--muted);margin-top:.65rem;">Doc. Lluen Vallejos Cesar Augusto</p>
+        <p style="font-size:.8rem;color:var(--muted);margin-top:.7rem;">Doc. Lluen Vallejos Cesar Augusto</p>
       </div>
 
     </div>
 
     <div class="card">
       <div class="card-header">
-        <div class="dot" style="background:#eff6ff">📊</div>
+        <div class="dot" style="background:var(--azul-bg);color:var(--azul-2);">📊</div>
         <h2>Resumen de carga académica</h2>
       </div>
       <div class="card-body">
@@ -456,17 +564,16 @@
             </tr>
           </tbody>
         </table>
-        <p style="font-size:.82rem;color:var(--muted);margin-top:1rem;text-align:right;"><strong>Total: 24 créditos &nbsp;·&nbsp; 30 horas lectivas/semana</strong></p>
+        <p style="font-size:.82rem;color:var(--muted);margin-top:1rem;text-align:right;"><strong>Total: 24 créditos · 30 horas lectivas/semana</strong></p>
       </div>
     </div>
   </div>
 
   <!-- ══════════════════════════════ EST209 ══════════════════════════════ -->
   <div class="panel" id="tab-est209">
-
     <div class="card">
       <div class="card-header">
-        <div class="dot" style="background:#eff6ff;color:var(--azul);font-weight:700;font-size:.85rem;">EST<br>209</div>
+        <div class="dot" style="background:var(--azul-bg);color:var(--azul-2);">EST<br>209</div>
         <h2>Regresión Lineal y No Lineal</h2>
         <span class="badge green">Intermedio</span>
       </div>
@@ -482,10 +589,10 @@
           <div class="info-pair"><div class="lbl">Área curricular</div><div class="val">Estudios específicos</div></div>
         </div>
 
-        <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.25rem;"><strong>Sumilla:</strong> Brinda metodologías estadísticas cuantitativas y cualitativas para estimar modelos que expliquen el comportamiento de la variable de interés usando software estadístico. Contenido: Regresión Lineal Simple, Correlación y Modelos Curvilíneos; Modelos Múltiples, GAM y Regresión Tobit.</p>
+        <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.3rem;"><strong>Sumilla:</strong> Brinda metodologías estadísticas cuantitativas y cualitativas para estimar modelos que expliquen el comportamiento de la variable de interés usando software estadístico. Contenido: Regresión Lineal Simple, Correlación y Modelos Curvilíneos; Modelos Múltiples, GAM y Regresión Tobit.</p>
 
         <p class="section-title">Logro general del curso</p>
-        <p style="font-size:.88rem;margin-bottom:1.5rem;">Usa las técnicas de regresión lineal y no lineal para encontrar modelos y realizar pronósticos en trabajos de investigación.</p>
+        <p style="font-size:.88rem;margin-bottom:1.6rem;">Usa las técnicas de regresión lineal y no lineal para encontrar modelos y realizar pronósticos en trabajos de investigación.</p>
 
         <!-- UNIDAD 1 -->
         <div class="unit-block">
@@ -493,21 +600,19 @@
             <h3>Unidad 1 — Modelos de regresión lineales</h3>
             <span class="period">30 mar – 25 may 2026 · 40h</span>
           </div>
-          <div style="padding:0">
-            <table>
-              <thead><tr><th style="width:90px">Semana</th><th>Criterio de desempeño</th><th>Conocimientos</th></tr></thead>
-              <tbody>
-                <tr><td>Sem. 1</td><td>Conoce definiciones básicas del curso y métodos a utilizar</td><td>Regresión, correlación, betas, error de estimación, pruebas de hipótesis, MCD, Método de Doolittle Abreviado</td></tr>
-                <tr><td>Sem. 2</td><td>Aplica el Método de Doolittle Abreviado y asociación de variables</td><td>Estimaciones y pruebas de hipótesis para correlaciones</td></tr>
-                <tr><td>Sem. 3</td><td>Estima el modelo lineal simple</td><td>β₀ y β₁, interpretación, gráficas, pruebas T y F, asociación lineal simple</td></tr>
-                <tr><td>Sem. 4</td><td>Estima el modelo cuadrático</td><td>Reconocimiento de variables, cálculo de betas, pruebas de hipótesis</td></tr>
-                <tr><td>Sem. 5</td><td>Elabora el modelo cúbico</td><td>Identificación y determinación de betas, pruebas de hipótesis</td></tr>
-                <tr><td>Sem. 6</td><td>Estima modelo lineal múltiple con dos Xᵢ</td><td>Diferenciación de variables con Doolittle Abreviado</td></tr>
-                <tr><td>Sem. 7</td><td>Encuentra el modelo lineal múltiple con tres y cuatro Xᵢ. Método matricial</td><td>Método Doolittle Abreviado. Consecuencia lógica del método</td></tr>
-                <tr><td>Sem. 8</td><td colspan="2"><span class="badge amber">Evidencia 1: Trabajos (50%) &nbsp;·&nbsp; Evidencia 2: Examen escrito (50%)</span></td></tr>
-              </tbody>
-            </table>
-          </div>
+          <table>
+            <thead><tr><th style="width:90px">Semana</th><th>Criterio de desempeño</th><th>Conocimientos</th></tr></thead>
+            <tbody>
+              <tr><td>Sem. 1</td><td>Conoce definiciones básicas del curso y métodos a utilizar</td><td>Regresión, correlación, betas, error de estimación, pruebas de hipótesis, MCD, Método de Doolittle Abreviado</td></tr>
+              <tr><td>Sem. 2</td><td>Aplica el Método de Doolittle Abreviado y asociación de variables</td><td>Estimaciones y pruebas de hipótesis para correlaciones</td></tr>
+              <tr><td>Sem. 3</td><td>Estima el modelo lineal simple</td><td>β₀ y β₁, interpretación, gráficas, pruebas T y F, asociación lineal simple</td></tr>
+              <tr><td>Sem. 4</td><td>Estima el modelo cuadrático</td><td>Reconocimiento de variables, cálculo de betas, pruebas de hipótesis</td></tr>
+              <tr><td>Sem. 5</td><td>Elabora el modelo cúbico</td><td>Identificación y determinación de betas, pruebas de hipótesis</td></tr>
+              <tr><td>Sem. 6</td><td>Estima modelo lineal múltiple con dos Xᵢ</td><td>Diferenciación de variables con Doolittle Abreviado</td></tr>
+              <tr><td>Sem. 7</td><td>Encuentra el modelo lineal múltiple con tres y cuatro Xᵢ. Método matricial</td><td>Método Doolittle Abreviado. Consecuencia lógica del método</td></tr>
+              <tr><td>Sem. 8</td><td colspan="2"><span class="badge amber">Evidencia 1: Trabajos (50%) · Evidencia 2: Examen escrito (50%)</span></td></tr>
+            </tbody>
+          </table>
         </div>
 
         <!-- UNIDAD 2 -->
@@ -516,22 +621,20 @@
             <h3>Unidad 2 — Modelos de regresión no lineales</h3>
             <span class="period">25 may – 27 jul 2026 · 45h</span>
           </div>
-          <div style="padding:0">
-            <table>
-              <thead><tr><th style="width:90px">Semana</th><th>Criterio de desempeño</th><th>Conocimientos</th></tr></thead>
-              <tbody>
-                <tr><td>Sem. 9</td><td>Analiza los modelos curvilíneos</td><td>Definiciones, métodos para estimar betas, interpretaciones, pruebas de hipótesis</td></tr>
-                <tr><td>Sem. 10</td><td>Estima los modelos: Compuesto y Logarítmico</td><td>MCD, cálculo de betas, pruebas, gráficos e interpretaciones</td></tr>
-                <tr><td>Sem. 11</td><td>Analiza los modelos: Crecimiento y Potencia</td><td>Método de mínimos cuadrados</td></tr>
-                <tr><td>Sem. 12</td><td>Calcula los modelos: Exponencial y Logística</td><td>Método de mínimos cuadrados</td></tr>
-                <tr><td>Sem. 13</td><td>Evaluación de práctica</td><td>Reforzamiento de teoría y práctica</td></tr>
-                <tr><td>Sem. 14</td><td>Programación de los modelos estudiados</td><td>Creación de software propio</td></tr>
-                <tr><td>Sem. 15</td><td>Analiza el Modelo Tobit</td><td>Teoría expuesta</td></tr>
-                <tr><td>Sem. 16</td><td>Calcula otros modelos con programación</td><td>Capacidad de elaboración</td></tr>
-                <tr><td>Sem. 17</td><td colspan="2"><span class="badge amber">Evidencia 3: Trabajos (50%) &nbsp;·&nbsp; Evidencia 4: Examen escrito (50%)</span></td></tr>
-              </tbody>
-            </table>
-          </div>
+          <table>
+            <thead><tr><th style="width:90px">Semana</th><th>Criterio de desempeño</th><th>Conocimientos</th></tr></thead>
+            <tbody>
+              <tr><td>Sem. 9</td><td>Analiza los modelos curvilíneos</td><td>Definiciones, métodos para estimar betas, interpretaciones, pruebas de hipótesis</td></tr>
+              <tr><td>Sem. 10</td><td>Estima los modelos: Compuesto y Logarítmico</td><td>MCD, cálculo de betas, pruebas, gráficos e interpretaciones</td></tr>
+              <tr><td>Sem. 11</td><td>Analiza los modelos: Crecimiento y Potencia</td><td>Método de mínimos cuadrados</td></tr>
+              <tr><td>Sem. 12</td><td>Calcula los modelos: Exponencial y Logística</td><td>Método de mínimos cuadrados</td></tr>
+              <tr><td>Sem. 13</td><td>Evaluación de práctica</td><td>Reforzamiento de teoría y práctica</td></tr>
+              <tr><td>Sem. 14</td><td>Programación de los modelos estudiados</td><td>Creación de software propio</td></tr>
+              <tr><td>Sem. 15</td><td>Analiza el Modelo Tobit</td><td>Teoría expuesta (modelos lineales para datos censurados)</td></tr>
+              <tr><td>Sem. 16</td><td>Calcula otros modelos con programación</td><td>Capacidad de elaboración</td></tr>
+              <tr><td>Sem. 17</td><td colspan="2"><span class="badge amber">Evidencia 3: Trabajos (50%) · Evidencia 4: Examen escrito (50%)</span></td></tr>
+            </tbody>
+          </table>
         </div>
 
         <p class="section-title">Calificación</p>
@@ -545,6 +648,7 @@
         <div class="biblio-item">Ostle, B. <em>Estadística Aplicada</em> (1979). Editorial LIMUSA. México.</div>
         <div class="biblio-item">Córdova M. (2009). <em>Estadística Descriptiva e Inferencial</em>. Editorial MOSHERA. Lima.</div>
         <div class="biblio-item">Gujarati D. & Porter D. (2010). <em>Econometría</em>. McGraw-Hill. México.</div>
+        <div class="biblio-item">Pérez C. (2008). <em>Econometría Avanzada: Técnicas y herramientas</em>. Pearson Education.</div>
         <div class="biblio-item">D'Ancona, A. (2004). <em>Análisis multivariable</em>. Editorial SINTESIS. Madrid.</div>
         <div class="biblio-item"><a href="https://cienciadedatos.net/documentos/40_tobit_regression_modelos_lineales_para_datos_censurados" target="_blank">Regresión Tobit – cienciadedatos.net</a></div>
         <div class="biblio-item"><a href="https://www.eco.uc3m.es/~ricmora/miccua/materials/S19T41_Spanish_handout.pdf" target="_blank">Material UC3M – Regresión</a></div>
@@ -556,7 +660,7 @@
   <div class="panel" id="tab-est210">
     <div class="card">
       <div class="card-header">
-        <div class="dot" style="background:#fef3c7;color:#92400e;font-weight:700;font-size:.85rem;">EST<br>210</div>
+        <div class="dot" style="background:var(--dorado-bg);color:#8a6213;">EST<br>210</div>
         <h2>Modelos Lineales</h2>
         <span class="badge amber">Avanzado</span>
       </div>
@@ -571,10 +675,10 @@
           <div class="info-pair"><div class="lbl">Duración</div><div class="val">30 mar – 31 jul 2026</div></div>
           <div class="info-pair"><div class="lbl">Área curricular</div><div class="val">Estudios de especialidad</div></div>
         </div>
-        <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.25rem;"><strong>Sumilla:</strong> Contribuye en la formalización y perfeccionamiento de modelos matemáticos apoyados en tecnología computacional. Unidades: distribución de formas cuadráticas y modelos de rango completo; modelos de correlación y modelos de rango no completo.</p>
+        <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.3rem;"><strong>Sumilla:</strong> Contribuye en la formalización y perfeccionamiento de modelos matemáticos apoyados en tecnología computacional. Unidades: distribución de formas cuadráticas y modelos de rango completo; modelos de correlación y modelos de rango no completo.</p>
 
         <p class="section-title">Logro general del curso</p>
-        <p style="font-size:.88rem;margin-bottom:1.5rem;">Explica los fundamentos teóricos para el diseño y análisis de modelos de rango completo y no completo, contrastando pruebas de hipótesis para tomar decisiones.</p>
+        <p style="font-size:.88rem;margin-bottom:1.6rem;">Explica los fundamentos teóricos para el diseño y análisis de modelos de rango completo y no completo, contrastando pruebas de hipótesis para tomar decisiones.</p>
 
         <div class="unit-block">
           <div class="unit-header">
@@ -592,7 +696,7 @@
               <tr><td>Sem. 6</td><td>Aplica ANOVA a modelos de regresión lineal</td><td>Análisis de varianza para regresión, intervalos de confianza</td></tr>
               <tr><td>Sem. 7</td><td>Elabora hipótesis y estadísticas para un modelo lineal general</td><td>Prueba de hipótesis lineal, cuatro hipótesis comunes, modelos reducidos</td></tr>
               <tr><td>Sem. 8</td><td>Elabora modelos de regresión polinomial y realiza pruebas</td><td>Regresión polinomial, estimación de la respuesta media, intervalos de confianza</td></tr>
-              <tr><td>Sem. 9</td><td colspan="2"><span class="badge amber">Evidencia 1: Trabajos (50%) &nbsp;·&nbsp; Evidencia 2: Examen escrito (50%)</span><br><small style="color:var(--muted)">Polinomios ortogonales. Selección del mejor conjunto de variables independientes</small></td></tr>
+              <tr><td>Sem. 9</td><td colspan="2"><span class="badge amber">Evidencia 1: Trabajos (50%) · Evidencia 2: Examen escrito (50%)</span><br><small style="color:var(--muted)">Polinomios ortogonales. Selección del mejor conjunto de variables independientes</small></td></tr>
             </tbody>
           </table>
         </div>
@@ -613,7 +717,7 @@
               <tr><td>Sem. 15</td><td>Analiza modelos de clasificación a un criterio</td><td>Funciones estimables, intervalos de confianza</td></tr>
               <tr><td>Sem. 16</td><td>Identifica modelos de clasificación anidada a dos criterios</td><td>ANOVA, funciones estimables en este modelo</td></tr>
               <tr><td>Sem. 17</td><td>Construye modelos de clasificación cruzada a dos criterios</td><td>Clasificación cruzada sin interacción, ANOVA, funciones estimables</td></tr>
-              <tr><td>Sem. 18</td><td colspan="2"><span class="badge amber">Evidencia 3: Trabajos (50%) &nbsp;·&nbsp; Evidencia 4: Examen escrito (50%)</span><br><small style="color:var(--muted)">Modelo balanceado, modelos fijos, aleatorios y mixtos</small></td></tr>
+              <tr><td>Sem. 18</td><td colspan="2"><span class="badge amber">Evidencia 3: Trabajos (50%) · Evidencia 4: Examen escrito (50%)</span><br><small style="color:var(--muted)">Modelo balanceado, modelos fijos, aleatorios y mixtos</small></td></tr>
             </tbody>
           </table>
         </div>
@@ -627,9 +731,9 @@
 
         <p class="section-title">Bibliografía básica</p>
         <div class="biblio-item">Graybill, F. (1961). <em>An Introduction To Linear Statistical Models, Vol I</em>. McGraw-Hill.</div>
-        <div class="biblio-item">Fahrmeir, L. et al. (2013). <em>Regression</em>. Springer. New York.</div>
+        <div class="biblio-item">Fahrmeir, L., Kneib, T., Lang, S. y Marx, B. (2013). <em>Regression</em>. Springer. New York.</div>
         <div class="biblio-item">Searle, S. & Gruber, M. (2017). <em>Linear Models</em>, 2nd ed. John Wiley. New Jersey.</div>
-        <div class="biblio-item">Montgomery, D. et al. (2006). <em>Introducción al Análisis de Regresión Lineal</em>, 3ra ed. Cía. Editorial Continental.</div>
+        <div class="biblio-item">Montgomery, D., Peck, E. y Vining, G. (2006). <em>Introducción al Análisis de Regresión Lineal</em>, 3ra ed. Cía. Editorial Continental.</div>
         <div class="biblio-item">Hair, J. et al. (1999). <em>Análisis Multivariante</em>, 5ta ed. Prentice Hall. Madrid.</div>
       </div>
     </div>
@@ -639,7 +743,7 @@
   <div class="panel" id="tab-est314">
     <div class="card">
       <div class="card-header">
-        <div class="dot" style="background:#f0fdf4;color:#166534;font-weight:700;font-size:.85rem;">EST<br>314</div>
+        <div class="dot" style="background:#e3f6ea;color:#166b3f;">EST<br>314</div>
         <h2>Aprendizaje No Supervisado</h2>
         <span class="badge amber">Avanzado</span>
       </div>
@@ -654,10 +758,10 @@
           <div class="info-pair"><div class="lbl">Duración</div><div class="val">30 mar – 31 jul 2026</div></div>
           <div class="info-pair"><div class="lbl">Área curricular</div><div class="val">Estudios de especialidad</div></div>
         </div>
-        <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.25rem;"><strong>Sumilla:</strong> Proponer y aplicar técnicas de preparación, preprocesamiento, reducción de la dimensionalidad, agrupamiento y reglas de asociación sobre conjuntos de datos. Unidad I: Metodología, preprocesamiento y reducción de dimensionalidad. Unidad II: Técnicas de agrupamiento, reglas de asociación y aplicaciones avanzadas.</p>
+        <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.3rem;"><strong>Sumilla:</strong> Propone y aplica técnicas de preparación, preprocesamiento, reducción de la dimensionalidad, agrupamiento y reglas de asociación sobre conjuntos de datos no etiquetados, usando programación avanzada en la nube (Google Colab, Jupyter Notebooks) con R y Python.</p>
 
         <p class="section-title">Logro general del curso</p>
-        <p style="font-size:.88rem;margin-bottom:1.5rem;">Aplica adecuadamente las técnicas de aprendizaje no supervisado en cuatro dimensiones: Metodología · Reducción de dimensionalidad · Agrupamiento · Reglas de decisiones.</p>
+        <p style="font-size:.88rem;margin-bottom:1.6rem;">Aplica adecuadamente las técnicas de aprendizaje no supervisado en cuatro dimensiones: Metodología · Reducción de dimensionalidad · Agrupamiento · Reglas de decisiones.</p>
 
         <div class="unit-block">
           <div class="unit-header">
@@ -672,10 +776,10 @@
               <tr><td>Sem. 3</td><td>Prepara los datos para modelamiento</td><td>Preprocesamiento, limpieza, transformación, codificación de variables</td></tr>
               <tr><td>Sem. 4</td><td>Analiza técnicas de Data Wrangling e ingeniería de características</td><td>Data Wrangling, Feature Engineering</td></tr>
               <tr><td>Sem. 5</td><td>Comprende la reducción de dimensionalidad y extracción de características</td><td>PCA, SVD, LDA, t-SNE, UMAP, Isomap, LLE</td></tr>
-              <tr><td>Sem. 6</td><td colspan="2">Redes neuronales para reducción de dimensionalidad &nbsp;<span class="badge amber">Evaluación técnicas básicas ANS (50%)</span></td></tr>
-              <tr><td>Sem. 7</td><td>Comprende la reducción de dimensionalidad probabilística y en grafos</td><td>Factor análisis, Gaussian Processes Latent Variable Models, Laplacian Eigenmaps</td></tr>
+              <tr><td>Sem. 6</td><td>Redes neuronales para reducción de dimensionalidad</td><td>Autoencoders · <span class="badge amber">Evaluación técnicas básicas ANS (50%)</span></td></tr>
+              <tr><td>Sem. 7</td><td>Comprende la reducción de dimensionalidad probabilística y en grafos</td><td>Factor análisis, Gaussian Process Latent Variable Models, Laplacian Eigenmaps</td></tr>
               <tr><td>Sem. 8</td><td>Comprende técnicas avanzadas de extracción de características</td><td>SimCLR, extracción para detección de anomalías, Isolation Forest, One-class SVM</td></tr>
-              <tr><td>Sem. 9</td><td colspan="2">Avance del proyecto de aplicación &nbsp;<span class="badge amber">Evaluación parcial reducción de dimensionalidad (50%)</span></td></tr>
+              <tr><td>Sem. 9</td><td colspan="2">Avance del proyecto de aplicación · <span class="badge amber">Evaluación parcial reducción de dimensionalidad (50%)</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -688,15 +792,15 @@
           <table>
             <thead><tr><th style="width:90px">Semana</th><th>Criterio de desempeño</th><th>Conocimientos</th></tr></thead>
             <tbody>
-              <tr><td>Sem. 10</td><td>Analiza problemas de clustering</td><td>K-Means, K-Medoids, concepto de distancia en diferentes contextos</td></tr>
+              <tr><td>Sem. 10</td><td>Analiza problemas de agrupamiento y plantea soluciones</td><td>K-Means, K-Medoids, concepto de distancia en diferentes contextos</td></tr>
               <tr><td>Sem. 11</td><td>Comprende métodos jerárquicos y basados en densidad</td><td>Agglomerative Clustering, DBSCAN, HDBSCAN</td></tr>
-              <tr><td>Sem. 12</td><td>Comprende métodos basados en modelos y grafos</td><td>Gaussian Mixture Model, Spectral Clustering</td></tr>
-              <tr><td>Sem. 13</td><td>Comprende agrupamiento con técnicas avanzadas</td><td>Fuzzy C-Means, CLIQUE, PROCLUS, Deep Embedded Clustering (DEC)</td></tr>
+              <tr><td>Sem. 12</td><td>Comprende modelos basados en distribuciones probabilísticas y grafos</td><td>Gaussian Mixture Model (GMM), Spectral Clustering</td></tr>
+              <tr><td>Sem. 13</td><td>Comprende problemas de agrupamiento con técnicas avanzadas</td><td>Fuzzy C-Means, CLIQUE, PROCLUS, Deep Embedded Clustering (DEC)</td></tr>
               <tr><td>Sem. 14</td><td>Analiza las reglas de asociación</td><td>Métricas (support, confidence, conviction, leverage, Jaccard), Apriori, FP-Growth, Eclat</td></tr>
-              <tr><td>Sem. 15</td><td colspan="2">Variantes en reglas de asociación: ponderada, negativa, PrefixSpan, SPADE &nbsp;<span class="badge amber">Evaluación técnicas avanzadas de agrupamiento (50%)</span></td></tr>
+              <tr><td>Sem. 15</td><td>Variantes en reglas de asociación</td><td>Ponderada, negativa, PrefixSpan, SPADE · <span class="badge amber">Evaluación técnicas avanzadas de agrupamiento (50%)</span></td></tr>
               <tr><td>Sem. 16</td><td>Analiza enfoques avanzados en reglas de asociación</td><td>Datos continuos, big data, basadas en grafos, aprendizaje profundo</td></tr>
               <tr><td>Sem. 17</td><td>Integra el desarrollo del proyecto</td><td>Integración y revisión de proyectos</td></tr>
-              <tr><td>Sem. 18</td><td colspan="2">Defensa del proyecto &nbsp;<span class="badge amber">Evaluación final ANS (50%)</span></td></tr>
+              <tr><td>Sem. 18</td><td colspan="2">Defensa del proyecto · <span class="badge amber">Evaluación final ANS (50%)</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -722,7 +826,7 @@
   <div class="panel" id="tab-est315">
     <div class="card">
       <div class="card-header">
-        <div class="dot" style="background:#f1f5f9;color:#475569;font-weight:700;font-size:.85rem;">EST<br>315</div>
+        <div class="dot" style="background:#f1f3f6;color:#5b6373;">EST<br>315</div>
         <h2>Gestión de Proyectos TIC</h2>
         <span class="badge green">Básico</span>
       </div>
@@ -738,11 +842,40 @@
           <div class="info-pair"><div class="lbl">Área curricular</div><div class="val">Estudios de especialidad</div></div>
         </div>
 
-        <div class="empty">
-          ⚠️ El sílabo de este curso no tiene contenido detallado de semanas, sumilla, ni bibliografía — el docente no registró esa información en el documento fuente. El contenido se distribuye en dos unidades con evaluación al 100% cada una (50% del promedio final cada unidad).
+        <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.3rem;"><strong>Sumilla:</strong> Aborda la planificación, dirección y control de proyectos tecnológicos enfocados en Tecnologías de la Información y Comunicación (TIC), dividido en dos unidades: marco inicial y metodologías del proyecto; e implementación, seguimiento y cierre.</p>
+
+        <div class="unit-block">
+          <div class="unit-header">
+            <h3>Unidad 1 — Marco inicial y metodologías del proyecto</h3>
+            <span class="period">30 mar – 1 jun 2026 (sem. 1 a 9)</span>
+          </div>
+          <div class="empty" style="margin:1rem;">
+            El sílabo fuente no registra el detalle semanal, sumilla extendida ni bibliografía específica para esta unidad. Evaluación continua mediante rúbricas y pruebas escritas.
+          </div>
         </div>
 
-        <p class="section-title" style="margin-top:1.25rem;">Calificación</p>
+        <div class="unit-block">
+          <div class="unit-header">
+            <h3>Unidad 2 — Implementación, seguimiento y cierre de proyectos</h3>
+            <span class="period">1 jun – 31 jul 2026 (sem. 10 a 18)</span>
+          </div>
+          <div class="empty" style="margin:1rem;">
+            El sílabo fuente no registra el detalle semanal, sumilla extendida ni bibliografía específica para esta unidad. Evaluación continua mediante rúbricas y pruebas escritas.
+          </div>
+        </div>
+
+        <p class="section-title">Sistema de evaluación</p>
+        <table>
+          <thead>
+            <tr><th>Unidad</th><th>Evidencias de desempeño</th><th>Ponderación</th><th>Instrumento</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Unidad 1</td><td>Evaluación continua (trabajos y exámenes)</td><td>50%</td><td>Rúbricas y pruebas escritas</td></tr>
+            <tr><td>Unidad 2</td><td>Evaluación continua (trabajos y exámenes)</td><td>50%</td><td>Rúbricas y pruebas escritas</td></tr>
+          </tbody>
+        </table>
+
+        <p class="section-title" style="margin-top:1.3rem;">Calificación</p>
         <div class="formula">
           PP Unidad 1 = 100% × EV Unidad 1<br>
           PP Unidad 2 = 100% × EV Unidad 2<br>
@@ -756,7 +889,7 @@
   <div class="panel" id="tab-est316">
     <div class="card">
       <div class="card-header">
-        <div class="dot" style="background:#eff6ff;color:var(--azul);font-weight:700;font-size:.85rem;">EST<br>316</div>
+        <div class="dot" style="background:var(--azul-bg);color:var(--azul-2);">EST<br>316</div>
         <h2>Arquitectura de Redes y Protocolos</h2>
         <span class="badge green">Básico</span>
       </div>
@@ -767,14 +900,14 @@
           <div class="info-pair"><div class="lbl">Especialidad</div><div class="val">Ing. Estadístico, Sistemas e Informática</div></div>
           <div class="info-pair"><div class="lbl">Prerrequisito</div><div class="val">ELE311 – Arquitectura de Computadoras</div></div>
           <div class="info-pair"><div class="lbl">Créditos / Horas</div><div class="val">3 créditos · 2h teórica + 2h práctica</div></div>
-          <div class="info-pair"><div class="lbl">Aula</div><div class="val">205-A</div></div>
+          <div class="info-pair"><div class="lbl">Aula</div><div class="val">Aula 205-A</div></div>
           <div class="info-pair"><div class="lbl">Duración</div><div class="val">30 mar – 31 jul 2026</div></div>
           <div class="info-pair"><div class="lbl">Área curricular</div><div class="val">Estudios de especialidad</div></div>
         </div>
-        <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.25rem;"><strong>Sumilla:</strong> Proporciona comprensión para implementar la organización de redes computacionales y los protocolos de funcionamiento, con énfasis en conectividad usando tecnologías modernas de transmisión de datos. Unidad I: Fundamentos, arquitectura, tipos, medios y protocolos. Unidad II: Servicios, seguridad y simulación de redes.</p>
+        <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.3rem;"><strong>Sumilla:</strong> Capacita en el diseño e implementación de infraestructuras de red físicas y lógicas, así como en la comprensión de protocolos de funcionamiento, utilizando simuladores avanzados como Cisco Packet Tracer. Unidad I: Fundamentos, arquitectura, tipos, medios y protocolos. Unidad II: Servicios, seguridad y simulación de redes.</p>
 
         <p class="section-title">Logro general del curso</p>
-        <p style="font-size:.88rem;margin-bottom:1.5rem;">Comprende el fundamento de Arquitectura de Redes y Protocolos para diseñar, configurar y administrar redes de telecomunicaciones usando herramientas de simulación (Cisco Packet Tracer).</p>
+        <p style="font-size:.88rem;margin-bottom:1.6rem;">Comprende el fundamento de Arquitectura de Redes y Protocolos para diseñar, configurar y administrar redes de telecomunicaciones usando herramientas de simulación.</p>
 
         <div class="unit-block">
           <div class="unit-header">
@@ -785,13 +918,13 @@
             <thead><tr><th style="width:90px">Semana</th><th>Criterio de desempeño</th><th>Conocimientos / Retroalimentación</th></tr></thead>
             <tbody>
               <tr><td>Sem. 1</td><td>Comprende conceptos y elementos de arquitectura de redes</td><td>Conceptos, dispositivos, arquitectura, teleproceso y proyectos de conectividad</td></tr>
-              <tr><td>Sem. 2</td><td>Explica conmutación, modulación y multiplexación</td><td>Paradigmas de transmisión y acceso al medio · Mapas conceptuales</td></tr>
-              <tr><td>Sem. 3</td><td>Identifica tipos de redes para definir cobertura y localización</td><td>PAN, LAN, MAN, WAN, WLAN, GAN, CAN, SAN, internet, intranet y extranet · Debate</td></tr>
-              <tr><td>Sem. 4</td><td>Aplica topologías físicas y lógicas con Cisco Packet Tracer</td><td>Topologías, cableado estructurado, redes de banda ancha &nbsp;<span class="badge">Examen escrito (100%)</span></td></tr>
-              <tr><td>Sem. 5</td><td>Reconoce los protocolos OSI y TCP/IP</td><td>Capas OSI, TCP/IP: interfaces, medidas, algoritmos y servicios · Debate</td></tr>
-              <tr><td>Sem. 6</td><td>Reconoce medios y dispositivos de la capa física</td><td>Capa física OSI, señalización, representación y codificación · Debate</td></tr>
-              <tr><td>Sem. 7</td><td>Identifica tecnología Ethernet y su relación con IEEE 802.x</td><td>Ethernet, Gigabit Ethernet, NICs, HUBS, SWITCHES, protocolo ARP · Proyecto cableado UTP/Coaxial</td></tr>
-              <tr><td>Sem. 8</td><td>Reconoce la capa de enlace de datos</td><td>Control de acceso al medio, entramado de datos · Exposición</td></tr>
+              <tr><td>Sem. 2</td><td>Explica conmutación, modulación y multiplexación</td><td>Paradigmas de transmisión y acceso al medio</td></tr>
+              <tr><td>Sem. 3</td><td>Identifica tipos de redes para definir cobertura de telecomunicaciones</td><td>PAN, LAN, MAN, WAN, WLAN, GAN, CAN, SAN, Internet, Intranet, Extranet</td></tr>
+              <tr><td>Sem. 4</td><td>Aplica topologías físicas y lógicas con Cisco Packet Tracer</td><td>Topologías, cableado estructurado, redes de banda ancha · <span class="badge">Examen escrito (100%)</span></td></tr>
+              <tr><td>Sem. 5</td><td>Reconoce los protocolos OSI y TCP/IP</td><td>Capas OSI, TCP/IP: interfaces, medidas, algoritmos y servicios</td></tr>
+              <tr><td>Sem. 6</td><td>Reconoce medios y dispositivos de la capa física</td><td>Capa física OSI, señalización, representación y codificación</td></tr>
+              <tr><td>Sem. 7</td><td>Identifica tecnología Ethernet y su relación con IEEE 802.x</td><td>Ethernet, Gigabit Ethernet, NICs, HUBS, SWITCHES, protocolo ARP</td></tr>
+              <tr><td>Sem. 8</td><td>Reconoce la capa de enlace de datos</td><td>Control de acceso al medio, entramado de datos</td></tr>
               <tr><td>Sem. 9</td><td>Aplica protocolos de la capa de RED</td><td>Enrutamiento IPv4, paquetes, interfaces y direcciones IP · Exposición del producto U1</td></tr>
             </tbody>
           </table>
@@ -805,12 +938,12 @@
           <table>
             <thead><tr><th style="width:90px">Semana</th><th>Criterio de desempeño</th><th>Conocimientos / Retroalimentación</th></tr></thead>
             <tbody>
-              <tr><td>Sem. 10</td><td>Identifica Switches y Routers para direccionamiento IP</td><td>Router: técnicas de enrutamiento, IPv6, procesos e interfaces · Exposición</td></tr>
-              <tr><td>Sem. 11</td><td>Implementa simulaciones de direccionamiento IPv4 e IPv6</td><td>Configuración de servicios de Router con Cisco Packet Tracer · Exposición</td></tr>
-              <tr><td>Sem. 12</td><td>Aplica protocolos de capas de transporte, presentación y sesión</td><td>TCP/UDP, DNS, TELNET, FTP, SNMP, NFS y otros · Exposición</td></tr>
-              <tr><td>Sem. 13</td><td>Configura enrutamiento estático y dinámico</td><td>Proyecto: DNS, HTTP, FTP y Correos en Cisco Packet Tracer &nbsp;<span class="badge">EV U2 (100%)</span></td></tr>
-              <tr><td>Sem. 14</td><td>Diseña redes inalámbricas en Cisco Packet Tracer</td><td>WLAN: Arquitectura, servicios e IEEE 802.11 · Práctica en Packet Tracer</td></tr>
-              <tr><td>Sem. 15</td><td>Reconoce redes satelitales</td><td>Arquitectura, servicios y control de acceso de redes globales · Forum</td></tr>
+              <tr><td>Sem. 10</td><td>Identifica Switches y Routers para direccionamiento IP</td><td>Router: técnicas de enrutamiento, IPv6, procesos e interfaces</td></tr>
+              <tr><td>Sem. 11</td><td>Implementa simulaciones de direccionamiento IPv4 e IPv6</td><td>Configuración de servicios de Router con Cisco Packet Tracer</td></tr>
+              <tr><td>Sem. 12</td><td>Aplica protocolos de capas de transporte, presentación y sesión</td><td>TCP/UDP, DNS, TELNET, FTP, SNMP, NFS y otros</td></tr>
+              <tr><td>Sem. 13</td><td>Configura enrutamiento estático y dinámico</td><td>Proyecto: DNS, HTTP, FTP y Correos en Cisco Packet Tracer · <span class="badge">EV U2 (100%)</span></td></tr>
+              <tr><td>Sem. 14</td><td>Diseña redes inalámbricas en Cisco Packet Tracer</td><td>WLAN: arquitectura, servicios e IEEE 802.11</td></tr>
+              <tr><td>Sem. 15</td><td>Reconoce redes satelitales</td><td>Arquitectura, servicios y control de acceso de redes globales</td></tr>
               <tr><td>Sem. 16</td><td>Reconoce redes de fibra óptica</td><td>Arquitectura, estructura y características de redes ópticas · Proyecto Red LAN con subneteo</td></tr>
               <tr><td>Sem. 17</td><td>Valida sistemas de seguridad de redes</td><td>Fundamentos de seguridad de redes de computadoras · Examen escrito</td></tr>
             </tbody>
@@ -833,11 +966,12 @@
           </tbody>
         </table>
 
-        <p class="section-title" style="margin-top:1.25rem;">Bibliografía básica</p>
+        <p class="section-title" style="margin-top:1.3rem;">Bibliografía básica</p>
         <div class="biblio-item">Apaza T., A. (2020). <em>Redes y Teleproceso</em>, 2da ed. Puno: Lucero impresiones.</div>
         <div class="biblio-item">Tanenbaum, A. S. & Wetherall, D. J. (2012). <em>Redes de computadoras</em>, 5ta ed. Pearson.</div>
         <div class="biblio-item">Stallings, W. (2004). <em>Comunicaciones y Redes de computadores</em>, 7ma ed. Pearson.</div>
         <div class="biblio-item">Dordoigne, J. (2015). <em>Redes informáticas – Nociones fundamentales</em>, 5ta ed. Ediciones Eni.</div>
+        <div class="biblio-item">Domingo, A. A. (2013). <em>Redes locales</em>. McGraw-Hill.</div>
         <div class="biblio-item"><a href="http://www2.mdp.edu.ar/images/eudem/pdf/redes%20de%20datos.pdf" target="_blank">Liberatori, M.C. (2018). Redes de datos y sus protocolos. EUDEM.</a></div>
       </div>
     </div>
@@ -847,7 +981,7 @@
   <div class="panel" id="tab-est317">
     <div class="card">
       <div class="card-header">
-        <div class="dot" style="background:#fdf2f8;color:#9d174d;font-weight:700;font-size:.85rem;">EST<br>317</div>
+        <div class="dot" style="background:var(--dorado-bg);color:#8a6213;">EST<br>317</div>
         <h2>Series de Tiempo</h2>
         <span class="badge amber">Avanzado</span>
       </div>
@@ -862,10 +996,13 @@
           <div class="info-pair"><div class="lbl">Duración</div><div class="val">30 mar – 31 jul 2026</div></div>
           <div class="info-pair"><div class="lbl">Área curricular</div><div class="val">Estudios de especialidad</div></div>
         </div>
-        <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.25rem;"><strong>Sumilla:</strong> Desarrolla habilidades para obtener modelos univariantes orientados a la toma de decisiones. Unidad I: Suavizamiento, descomposición, modelos AR, MA, ARMA, ARIMA. Unidad II: Modelos SAR, SMA, SARMA, SARIMA, modelos heterocedásticos ARCH/GARCH, modelos multivariantes y redes neuronales.</p>
+        <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.3rem;"><strong>Sumilla:</strong> Desarrolla habilidades para obtener modelos univariantes orientados a la toma de decisiones. Unidad I: Suavizamiento, descomposición, modelos AR, MA, ARMA, ARIMA. Unidad II: Modelos SAR, SMA, SARMA, SARIMA, modelos heterocedásticos ARCH/GARCH, modelos multivariantes y redes neuronales.</p>
 
-        <p class="section-title">Logro general del curso</p>
-        <p style="font-size:.88rem;margin-bottom:1.5rem;">El estudiante demostrará actitud responsable y ética en la producción de pronósticos para la toma de decisiones en investigación.</p>
+        <p class="section-title">Logros de aprendizaje por unidad</p>
+        <ul style="font-size:.88rem;margin:0 0 1.6rem 1.1rem;line-height:1.9;">
+          <li><strong>Unidad 1:</strong> Produce información de pronósticos mediante la metodología Box-Jenkins con los modelos AR, MA, ARMA, ARIMA para realidades en investigación orientada a la toma de decisiones.</li>
+          <li><strong>Unidad 2:</strong> Produce información de pronósticos mediante la metodología Box-Jenkins, redes neuronales (modelo SARIMA) y modelos heterocedásticos ARCH y GARCH.</li>
+        </ul>
 
         <div class="unit-block">
           <div class="unit-header">
@@ -893,7 +1030,7 @@
             <tbody>
               <tr><td>Sem. 10–13</td><td>Modelos SAR, SMA, SARMA, SARIMA. Modelos heterocedásticos ARCH y GARCH</td></tr>
               <tr><td>Sem. 14</td><td><span class="badge amber">Evidencia 3 (50%): Aplica modelos heterocedásticos a series de tiempo de realidades</span></td></tr>
-              <tr><td>Sem. 15–17</td><td>Modelos multivariantes con variables exógenas. Redes neuronales para series temporales</td></tr>
+              <tr><td>Sem. 15–17</td><td>Modelos multivariantes con variables exógenas y aplicación de redes neuronales para series temporales (vinculado a finanzas/economía)</td></tr>
               <tr><td>Sem. 18</td><td><span class="badge amber">Evidencia 4 (50%): Aplica modelos con variables exógenas y multivariadas a realidades</span></td></tr>
             </tbody>
           </table>
@@ -911,7 +1048,7 @@
           </tbody>
         </table>
 
-        <p class="section-title" style="margin-top:1.25rem;">Calificación</p>
+        <p class="section-title" style="margin-top:1.3rem;">Calificación</p>
         <div class="formula">
           PP Unidad 1 = 50% × EVI1 + 50% × EVI2<br>
           PP Unidad 2 = 50% × EVI3 + 50% × EVI4<br>
@@ -921,7 +1058,8 @@
         <p class="section-title">Bibliografía básica</p>
         <div class="biblio-item">Guerrero, V. M. (2014). <em>Análisis estadístico y pronóstico de series de tiempo económicas</em>, 3ra ed. Jit Press. México.</div>
         <div class="biblio-item">Hanke, J. E. & Wichern, D. W. (2006). <em>Pronóstico en los negocios</em>, 8va ed. Prentice Hall. México.</div>
-        <div class="biblio-item">Ramos, A. et al. (2016). <em>Series de Tiempo: Software de análisis con Eviews</em>. Editorial Altiplano. Puno, Perú.</div>
+        <div class="biblio-item">Uriel, E. (1985). <em>Análisis de series temporales</em>. Editorial Paraninfo. España.</div>
+        <div class="biblio-item">Ramos, A., Villasante, F. H., Tumi, N. & Alvarez, T. P. (2016). <em>Series de Tiempo: Software de análisis con Eviews</em>. Editorial Altiplano. Puno, Perú.</div>
         <div class="biblio-item">Gujarati, D. (2004). <em>Econometría</em>, 4ta ed. McGraw-Hill. México.</div>
         <div class="biblio-item"><a href="https://machinelearningmastery.com/develop-arch-and-garch-models-for-time-series-forecasting-in-python/" target="_blank">ARCH/GARCH en Python – Machine Learning Mastery</a></div>
         <div class="biblio-item"><a href="https://machinelearningmastery.com/arima-for-time-series-forecasting-with-python/" target="_blank">ARIMA en Python – Machine Learning Mastery</a></div>
@@ -932,6 +1070,10 @@
 </div><!-- /content -->
 
 <footer>
+  <div class="foot-logos">
+    <div class="mini"><img src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Escudo_de_la_Universidad_Nacional_del_Altiplano.png" alt="UNAP" onerror="this.style.display='none'"></div>
+    <div class="mini"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2jyxhjmoXirp3MoGkrLaCeBit56dyDI9bKg&s" alt="FINESI" onerror="this.style.display='none'"></div>
+  </div>
   Facultad de Ingeniería Estadística e Informática · Universidad Nacional del Altiplano Puno · Semestre 2026-I<br>
   Currículo vigente 2021–2025 v2.0 · Ciclo VI · <em>Modalidad: Presencial</em>
 </footer>
