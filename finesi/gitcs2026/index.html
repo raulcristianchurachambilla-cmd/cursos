@@ -1,218 +1,584 @@
-
-```html
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
-<link rel="stylesheet" type="text/css" href="./lib/style.css">
-<script type="text/javascript" src="./lib/hidebib.js"></script>
-<title>UNAP-EST315</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta name="keywords" content="gestión de proyectos TIC, GitHub, Notion, portafolios, ciencia de datos, desarrollo de software, redes, telecomunicaciones, estadística, PMBOK, Scrum, Kanban" />
-<meta name="description" content="Sílabo actualizado del curso de Gestión de Proyectos TICs - Ingeniería Estadística e Informática - UNAP" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consolidado de Sílabos - Semestre 2026-I</title>
+    <style>
+        :root {
+            --primary-color: #0d3b66;
+            --secondary-color: #05668d;
+            --accent-color: #f4d35e;
+            --bg-color: #f8f9fa;
+            --text-color: #333333;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            display: flex;
+        }
+
+        /* Navegación Lateral */
+        nav {
+            width: 280px;
+            height: 100vh;
+            background-color: var(--primary-color);
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            padding: 20px 10px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        nav h2 {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-bottom: 5px;
+        }
+
+        nav ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: var(--secondary-color);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Contenedor Principal */
+        main {
+            margin-left: 280px;
+            padding: 40px;
+            width: calc(100% - 280px);
+            max-width: 1200px;
+        }
+
+        header {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        /* Secciones de Cursos */
+        .curso-section {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 50px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .curso-title {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin: 25px 0 15px 0;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Tablas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+
+        table, th, td {
+            border: 1px solid var(--border-color);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .grid-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info-item {
+            background-color: #f8fafc;
+            padding: 12px;
+            border-radius: 5px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .info-item strong {
+            color: var(--primary-color);
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        /* Listas */
+        ul.bibliografia, ul.estrategias {
+            list-style-type: square;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        ul.bibliografia li, ul.estrategias li {
+            margin-bottom: 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #e2e8f0;
+            color: #475569;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .badge-avanzado { background-color: #dbeafe; color: #1e40af; }
+        .badge-intermedio { background-color: #fef3c7; color: #92400e; }
+        .badge-basico { background-color: #dcfce7; color: #166534; }
+
+        .formula {
+            background-color: #fffbeb;
+            border: 1px solid #fef3c7;
+            padding: 15px;
+            border-radius: 5px;
+            color: #92400e;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            nav { width: 100%; height: auto; position: relative; }
+            main { margin-left: 0; width: 100%; padding: 20px; }
+            .grid-info { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
+<body>
 
-<body style="background-color: #060913; margin: 0; padding:0;">
-<div style="padding: 25px;">
-<table width="800" border="0" align="center" cellpadding="20" style="background-color: #fff;">
-<tr>
-<td>
+    <nav>
+        <h2>UNA PUNO</h2>
+        <p style="font-size:0.8rem; text-align:center; color:#cbd5e1; margin-bottom:20px;">Ingeniería Estadística e Informática</p>
+        <ul>
+            <li><a href="#regresion">1. Regresión Lineal y No Lineal</a></li>
+            <li><a href="#modelos-lineales">2. Modelos Lineales</a></li>
+            <li><a href="#gestion-tics">3. Gestión de Proyectos TICs</a></li>
+            <li><a href="#arquitectura-redes">4. Arq. de Redes y Protocolos</a></li>
+            <li><a href="#aprendizaje-nosup">5. Aprendizaje No Supervisado</a></li>
+            <li><a href="#series-tiempo">6. Series de Tiempo</a></li>
+        </ul>
+    </nav>
 
-<table width="100%" align="center" border="0" cellpadding="10">
-<tr>
-<td width="70%" style="vertical-align: top; text-align: left;">
-<p style="font-size: 36px;">Gestión de Proyectos TICs</p>
-<p style="font-size: 16px;">
-Ingeniería Estadística e Informática<br>
-Facultad de Ingeniería Estadística e Informática<br>
-Universidad Nacional del Altiplano - Puno
-</p>
-<p style="font-size: 16px;">
-Código: EST315 | Ciclo: VI | Créditos: 4<br>
-Horas: 3 teóricas, 2 prácticas | Total: 5 horas
-</p>
-<p style="font-size: 16px;">
-Prof. M. Sc. Romel Percy Melgarejo Bolívar
-</p>
-</td>
-<td width="30%" valign="bottom" align="right"></td>
-</tr>
+    <main>
+        <header>
+            <h1>CONSOLIDADO DE SÍLABOS</h1>
+            <p>Facultad de Ingeniería Estadística e Informática | Semestre Académico 2026-I</p>
+        </header>
 
-<tr>
-<td colspan="2">
-<p>
-<a href="#sumilla">Sumilla</a> |
-<a href="#logro">Logro</a> |
-<a href="#contenido">Contenido</a> |
-<a href="#metodologia">Metodología</a> |
-<a href="#evaluacion">Evaluación</a> |
-<a href="#entregables">Entregables</a> |
-<a href="#recursos">Recursos</a> |
-<a href="#bibliografia">Bibliografía</a> |
-<a href="#contacto">Contacto</a>
-</p>
-</td>
-</tr>
-</table>
+        <section id="regresion" class="curso-section">
+            <h2 class="curso-title">1. Regresión Lineal y No Lineal</h2>
+            
+            <h3>I. Información General</h3>
+            <div class="grid-info">
+                <div class="info-item"><strong>Código</strong>EST209</div>
+                <div class="info-item"><strong>Prerrequisito</strong>EST309-Métodos de Optimización</div>
+                <div class="info-item"><strong>Horas Lectivas</strong>03h Teóricas, 02h Prácticas (Total 05h)</div>
+                <div class="info-item"><strong>Créditos</strong>04</div>
+                <div class="info-item"><strong>Ciclo</strong>VI</div>
+                <div class="info-item"><strong>Nivel de Desempeño</strong><span class="badge badge-intermedio">INTERMEDIO</span></div>
+                <div class="info-item"><strong>Docente</strong>VARGAS VALVERDE CONFESOR MILAN (Nombrado Asociado T.C.)</div>
+                <div class="info-item"><strong>Especialidad</strong>Lic. en Estadística, M.Sc. en Estadística, Dr. en Estadística e Informática</div>
+                <div class="info-item"><strong>Ambiente</strong>Pabellón Nuevo, Segundo Piso, Aula 202</div>
+                <div class="info-item"><strong>Duración</strong>Del 30 de Marzo al 31 de Julio del 2026</div>
+            </div>
 
-<hr/>
+            <h3>II. Sumilla</h3>
+            <p>El curso corresponde al área de Estudios específicos, es de naturaleza teórico-práctico. Su propósito es brindar metodologías estadísticas cuantitativas y cualitativas para estimar un modelo que explique el comportamiento de una variable de interés mediante software estadístico. Comprende: Regresión Lineal Simple, Correlación lineal, Modelos curvilíneos, Modelos múltiples, Modelos aditivos generalizados (GAM) y Regresión Tobit para datos censurados.</p>
 
-<heading id="sumilla">Sumilla</heading>
-<p style="text-align: justify">
-El curso de Gestión de Proyectos TICs corresponde al área de Estudios de Especialidad y es de naturaleza teórico-práctica. Tiene como propósito desarrollar competencias para formular, planificar, ejecutar, monitorear, controlar y cerrar proyectos tecnológicos vinculados a la Ingeniería Estadística e Informática.
-</p>
+            <h3>III. Cronograma de Contenidos</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Semana</th>
+                        <th style="width: 40%;">Criterio de Desempeño</th>
+                        <th style="width: 45%;">Conocimientos / Temas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Semana 1</td><td>Conoce definiciones básicas del curso y métodos a utilizar.</td><td>Regresión, correlación. Betas(i), error de estimación. Pruebas de hipótesis, estimaciones puntuales e interválicas. Mínimos Cuadrados. Método de Doolittle Abreviado.</td></tr>
+                    <tr><td>Semana 2</td><td>Aplica el método de Doolittle Abreviado y asociación de variables.</td><td>Las estimaciones respectivas y pruebas de hipótesis para las correlaciones.</td></tr>
+                    <tr><td>Semana 3</td><td>Estima el modelo lineal simple.</td><td>Encuentra beta0 y beta1. Interpreta, grafica, realiza pruebas de hipótesis: T y F. Asociación lineal simple.</td></tr>
+                    <tr><td>Semana 4</td><td>Estima el modelo cuadrático.</td><td>Reconoce las variables, calcula los betas, realiza pruebas de hipótesis.</td></tr>
+                    <tr><td>Semana 5</td><td>Elabora el modelo cúbico.</td><td>Identifica y determina los respectivos betas, interpreta pruebas de hipótesis.</td></tr>
+                    <tr><td>Semana 6</td><td>Estima modelo lineal múltiple con dos Xi.</td><td>Diferencia las variables aplicando el método de Doolittle abreviado.</td></tr>
+                    <tr><td>Semana 7</td><td>Encuentra el modelo lineal múltiple con tres y cuatro Xi. Estudia el método matricial.</td><td>Aplica el método Doolittle abreviado. Consecuencia lógica del método de Doolittle abreviado. Evidencia 1 (Trabajos 50%).</td></tr>
+                    <tr><td>Semana 8</td><td>Desarrolla las respectivas evaluaciones.</td><td>Primer examen escrito (Evidencia 2: 50%).</td></tr>
+                    <tr><td>Semana 9</td><td>Analiza los modelos curvilíneos.</td><td>Definiciones, métodos a utilizar para estimar los betas, interpretaciones, aplicaciones, pruebas de hipótesis.</td></tr>
+                    <tr><td>Semana 10-11</td><td>Estima los modelos: Compuesto, Logarítmico, Crecimiento y Potencia.</td><td>Método de mínimos cuadrados, cálculo de betas, pruebas de hipótesis, gráficos e interpretaciones.</td></tr>
+                    <tr><td>Semana 12-13</td><td>Calcula los modelos: Exponencial, Logística y Evaluación de práctica.</td><td>Método de mínimos cuadrados. Reforzamiento de la teoría y práctica.</td></tr>
+                    <tr><td>Semana 14</td><td>Programación de los modelos estudiados.</td><td>Creación de propio Software.</td></tr>
+                    <tr><td>Semana 15</td><td>Analiza el Modelo Tobit.</td><td>Teoría expuesta (Modelos lineales para datos censurados).</td></tr>
+                    <tr><td>Semana 16</td><td>Calcula otros modelos con programación.</td><td>Capacidad de elaboración. Evidencia 3 (Trabajos 50%).</td></tr>
+                    <tr><td>Semana 17</td><td>Conoce el uso de herramientas informáticas y evaluaciones.</td><td>Evaluaciones finales. Evidencia 4 (Examen escrito 50%).</td></tr>
+                </tbody>
+            </table>
 
-<p style="text-align: justify">
-El curso se orienta a la gestión de portafolios de proyectos desde el inicio hasta el cierre, integrando las principales líneas de desarrollo profesional de la carrera: desarrollo de software, programación, diseño de sistemas, redes y telecomunicaciones, estadística aplicada, ciencia de datos, inteligencia artificial, análisis estadístico y asesorías de tesis relacionadas con el procesamiento de datos.
-</p>
+            <h3>IV. Evaluación y Calificación</h3>
+            <div class="formula">
+                Promedio Parcial U1 = 50% (EVI 1) + 50% (EVI 2) <br>
+                Promedio Parcial U2 = 50% (EVI 3) + 50% (EVI 4) <br>
+                Promedio Final = 50% (I UPP) + 50% (II UPP)
+            </div>
 
-<p style="text-align: justify">
-Para ello, los estudiantes utilizarán herramientas colaborativas como GitHub, GitHub Projects y Notion, aplicando metodologías tradicionales, ágiles e híbridas como PMBOK, Scrum, Kanban, Design Thinking y gestión basada en evidencias. El curso promueve el trabajo en equipo, la trazabilidad, la documentación técnica, la gestión de tareas, la comunicación efectiva y la entrega progresiva de valor mediante proyectos reales.
-</p>
+            <h3>V. Fuentes de Información</h3>
+            <ul class="bibliografia">
+                <li>Ostle, B. Estadística Aplicada (1979) Editorial LIMUSA S.A. México.</li>
+                <li>Córdova M. (2009) Estadística Descriptiva e Inferencial. Editorial MOSHERA S.R.L.</li>
+                <li>Gujarati D. & Porter D. (2010) Econometría. Editorial Mc Graw Hill.</li>
+                <li>Pérez C. (2008) Econometría Avanzada: Técnicas y herramientas. Editorial Pearson Education.</li>
+            </ul>
+        </section>
 
-<hr/>
+        <section id="modelos-lineales" class="curso-section">
+            <h2 class="curso-title">2. Modelos Lineales</h2>
+            
+            <h3>I. Información General</h3>
+            <div class="grid-info">
+                <div class="info-item"><strong>Código</strong>EST210</div>
+                <div class="info-item"><strong>Prerrequisito</strong>EST307-Modelos Discretos</div>
+                <div class="info-item"><strong>Horas Lectivas</strong>04h Teóricas, 02h Prácticas (Total 06h)</div>
+                <div class="info-item"><strong>Créditos</strong>05</div>
+                <div class="info-item"><strong>Ciclo</strong>VI</div>
+                <div class="info-item"><strong>Nivel de Desempeño</strong><span class="badge badge-avanzado">AVANZADO</span></div>
+                <div class="info-item"><strong>Docente</strong>MORILLOS VALDERRAMA SANTOS OCTAVIO (Nombrado Principal D.E.)</div>
+                <div class="info-item"><strong>Especialidad</strong>Doctor en Estadística e Informática</div>
+                <div class="info-item"><strong>Ambiente</strong>Aula 205, Pabellón Antiguo</div>
+                <div class="info-item"><strong>Duración</strong>Del 30 de Marzo al 31 de Julio del 2026</div>
+            </div>
 
-<heading id="logro">Logro del curso</heading>
-<p style="text-align: justify">
-Al finalizar el curso, el estudiante gestiona portafolios y proyectos de Tecnologías de Información y Comunicación aplicando metodologías tradicionales, ágiles e híbridas para planificar, ejecutar, monitorear y controlar iniciativas relacionadas con desarrollo de software, redes y telecomunicaciones, estadística, ciencia de datos, inteligencia artificial e investigación aplicada, utilizando herramientas digitales que garanticen trazabilidad, calidad y cumplimiento de objetivos durante todo el ciclo de vida del proyecto.
-</p>
+            <h3>II. Sumilla</h3>
+            <p>Curso del área curricular de estudios de especialidad, teórico-práctico. Tiene como propósito contribuir significativamente en la solución de problemas reales mediante la formalización de modelos matemáticos y uso de la computación. Está dividido en: Distribución de formas cuadráticas, Modelos de rango completo, Modelos de correlación y Modelos de rango no completo.</p>
 
-<hr/>
+            <h3>III. Cronograma de Contenidos</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Semana</th>
+                        <th style="width: 40%;">Criterio de Desempeño</th>
+                        <th style="width: 45%;">Conocimientos / Temas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Semana 1</td><td>Identifica las distribuciones de formas cuadráticas.</td><td>Introducción a las formas cuadráticas.</td></tr>
+                    <tr><td>Semana 2</td><td>Analiza la función de densidad multivariante.</td><td>Momentos, F central y no central. Otras distribuciones no centrales.</td></tr>
+                    <tr><td>Semana 3</td><td>Analiza y desarrolla las distribuciones de formas cuadráticas.</td><td>Distribuciones e independencia de formas cuadráticas.</td></tr>
+                    <tr><td>Semana 4-5</td><td>Analiza y elabora modelos de rango completo y ANOVA.</td><td>Estimación, k variables x. Partición de la suma total de cuadrados. Correlación Múltiple. Propiedades distribucionales.</td></tr>
+                    <tr><td>Semana 6</td><td>Aplica las tablas de análisis de varianza a regresión.</td><td>Análisis de varianza para modelos de regresión. Intervalos de confianza.</td></tr>
+                    <tr><td>Semana 7</td><td>Elabora hipótesis y estadísticas para un modelo lineal.</td><td>Prueba de hipótesis lineal. Cuatro hipótesis comunes. Modelos Reducidos.</td></tr>
+                    <tr><td>Semana 8</td><td>Elabora modelos de regresión polinomial.</td><td>Regresión Polinomial. Estimación de Respuesta Media. Evidencia 1 (Trabajos 50%).</td></tr>
+                    <tr><td>Semana 9</td><td>Construye polinomios ortogonales y selección de variables.</td><td>Polinomios ortogonales. Selección del mejor conjunto de variables independientes. Evidencia 2 (Examen 50%).</td></tr>
+                    <tr><td>Semana 10</td><td>Estudia y analiza los modelos de correlación.</td><td>Modelos de correlación. Pruebas de hipótesis. Intervalos de confianza. Correlación Parcial y Múltiple.</td></tr>
+                    <tr><td>Semana 11</td><td>Construye y analiza los modelos de ANOVA.</td><td>Modelos de ANOVA. Clasificaciones cruzadas y anidadas. Matriz Inversa Generalizada.</td></tr>
+                    <tr><td>Semana 12-13</td><td>Estudia los modelos de rango no completo.</td><td>Modelos de clasificación a un criterio. Funciones estimables. Prueba de estimabilidad.</td></tr>
+                    <tr><td>Semana 14-15</td><td>Elabora y construye prueba de hipótesis y estadística F general.</td><td>Hipótesis Lineal General. ANOVA. Contrastes independientes y ortogonales. Clasificación a un criterio.</td></tr>
+                    <tr><td>Semana 16-17</td><td>Identifica modelos de clasificación anidada y cruzada a dos criterios.</td><td>Análisis de varianza. Funciones estimables. Evidencia 3 (Trabajos 50%).</td></tr>
+                    <tr><td>Semana 18</td><td>Identifica los modelos balanceados y componentes de varianza.</td><td>Modelos fijos, aleatorios y mixtos. Evidencia 4 (Examen escrito 50%).</td></tr>
+                </tbody>
+            </table>
 
-<heading id="contenido">Contenido</heading>
+            <h3>IV. Evaluación y Calificación</h3>
+            <div class="formula">
+                Promedio Unidad 1 y 2 = 50% Trabajos (EVI 1 / EVI 3) + 50% Examen Escrito (EVI 2 / EVI 4) <br>
+                Promedio Final = 50% (I UPP) + 50% (II UPP)
+            </div>
 
-<div class="pub">
-<heading>Unidad I: Formulación, planificación y organización del portafolio de proyectos TIC</heading>
-<p><b>Duración:</b> Semanas 1 al 9</p>
-<p><b>Logro de unidad:</b> Formula y organiza un proyecto TIC real mediante la identificación de problemas, definición de objetivos, planificación de entregables y construcción de un portafolio digital en GitHub y Notion.</p>
+            <h3>V. Fuentes de Información</h3>
+            <ul class="bibliografia">
+                <li>Fahrmeir, L., Kneib, T., Lang, S. y Marx, B. (2013). Regression. Springer. New York.</li>
+                <li>Montgomery, D., Peck, E. y Vining, G. (2006). Introducción al Análisis de Regresión Lineal.</li>
+                <li>Searle, S. y Gruber, M. (2017). Linear Models, second edition. John Wiley.</li>
+            </ul>
+        </section>
 
-<ul>
-<li><b>Semana 1:</b> Presentación del curso. Enfoque por proyectos y portafolios. Líneas de trabajo: software, redes, estadística, ciencia de datos e investigación.</li>
-<li><b>Semana 2:</b> Gestión de proyectos TIC. Proyecto, programa y portafolio. Ciclo de vida del proyecto.</li>
-<li><b>Semana 3:</b> Identificación de problemas, necesidades y oportunidades en contextos reales.</li>
-<li><b>Semana 4:</b> Design Thinking e ideación de proyectos tecnológicos.</li>
-<li><b>Semana 5:</b> Formulación del proyecto: problema, objetivos, alcance, entregables e indicadores.</li>
-<li><b>Semana 6:</b> Acta de constitución del proyecto. Roles, responsabilidades e interesados.</li>
-<li><b>Semana 7:</b> Organización del portafolio en Notion: documentación, cronograma, bitácora y evidencias.</li>
-<li><b>Semana 8:</b> Organización del repositorio en GitHub: estructura, README, issues, milestones y control de versiones.</li>
-<li><b>Semana 9:</b> Sustentación parcial del proyecto: pitch, Project Charter, tablero de seguimiento y portafolio inicial.</li>
-</ul>
-</div>
+        <section id="gestion-tics" class="curso-section">
+            <h2 class="curso-title">3. Gestión de Proyectos TICs</h2>
+            
+            <h3>I. Información General</h3>
+            <div class="grid-info">
+                <div class="info-item"><strong>Código</strong>EST315</div>
+                <div class="info-item"><strong>Prerrequisito</strong>EST313-Sistemas de Gestión de Base de Datos II</div>
+                <div class="info-item"><strong>Horas Lectivas</strong>03h Teóricas, 02h Prácticas (Total 05h)</div>
+                <div class="info-item"><strong>Créditos</strong>04</div>
+                <div class="info-item"><strong>Ciclo</strong>VI</div>
+                <div class="info-item"><strong>Nivel de Desempeño</strong><span class="badge badge-basico">BÁSICO</span></div>
+                <div class="info-item"><strong>Docente</strong>MELGAREJO BOLIVAR ROMEL PERCY (Contratado B2)</div>
+                <div class="info-item"><strong>Especialidad</strong>Ing. Estadístico e Informático, M.Sc. en Informática</div>
+                <div class="info-item"><strong>Ambiente</strong>Aula 101 y Laboratorio de la EP Estadística e Informática, Lab 1</div>
+            </div>
 
-<div class="pub">
-<heading>Unidad II: Ejecución, seguimiento, control y cierre de proyectos TIC</heading>
-<p><b>Duración:</b> Semanas 10 al 18</p>
-<p><b>Logro de unidad:</b> Ejecuta, monitorea y cierra un proyecto TIC aplicando metodologías ágiles, gestión visual, control de riesgos, indicadores de avance y presentación de resultados mediante un portafolio digital funcional.</p>
+            <h3>II. Sumilla y Estructura</h3>
+            <p>Este curso aborda la planificación, dirección y control de proyectos tecnológicos enfocados en Tecnologías de la Información y Comunicación (TICs). Está dividido en dos unidades principales:</p>
+            <ul>
+                <li><strong>Unidad 1:</strong> Desarrollo del marco inicial y metodologías del proyecto (Semanas 1 a 9, Del 30 de Marzo al 1 de Junio). Ponderación de la unidad: 50%.</li>
+                <li><strong>Unidad 2:</strong> Implementación, seguimiento y cierre de proyectos (Semanas 10 a 18, Del 1 de Junio al 31 de Julio). Ponderación de la unidad: 50%.</li>
+            </ul>
 
-<ul>
-<li><b>Semana 10:</b> PMBOK aplicado a proyectos TIC. Enfoques predictivos, adaptativos e híbridos.</li>
-<li><b>Semana 11:</b> Scrum aplicado a proyectos de software, ciencia de datos, redes e investigación.</li>
-<li><b>Semana 12:</b> Kanban y gestión visual de tareas mediante GitHub Projects y Notion.</li>
-<li><b>Semana 13:</b> Gestión del cronograma, recursos, costos y responsabilidades del equipo.</li>
-<li><b>Semana 14:</b> Gestión de riesgos, calidad y cambios en proyectos TIC.</li>
-<li><b>Semana 15:</b> Métricas e indicadores: avance, cumplimiento, productividad, backlog, issues y evidencias.</li>
-<li><b>Semana 16:</b> Documentación técnica, informe del proyecto, manuales, reportes estadísticos o reportes de ciencia de datos.</li>
-<li><b>Semana 17:</b> Preparación de la presentación final: demo, dashboard, prototipo, análisis, informe o solución implementada.</li>
-<li><b>Semana 18:</b> Presentación final, cierre del proyecto, evaluación del portafolio y reflexión del aprendizaje.</li>
-</ul>
-</div>
+            <h3>III. Sistema de Evaluación</h3>
+            <table style="margin-top: 15px;">
+                <thead>
+                    <tr>
+                        <th>Unidad</th>
+                        <th>Evidencias de Desempeño</th>
+                        <th>Ponderación</th>
+                        <th>Instrumento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Unidad 1</td><td>UNIDAD 1 EV (Evaluación continua/Trabajos y exámenes)</td><td>50%</td><td>Rúbricas y Pruebas escritas</td></tr>
+                    <tr><td>Unidad 2</td><td>UNIDAD 2 EV (Evaluación continua/Trabajos y exámenes)</td><td>50%</td><td>Rúbricas y Pruebas escritas</td></tr>
+                </tbody>
+            </table>
+            <div class="formula">
+                Promedio Final = 50% (Promedio Unidad 1) + 50% (Promedio Unidad 2)
+            </div>
+        </section>
 
-<hr/>
+        <section id="arquitectura-redes" class="curso-section">
+            <h2 class="curso-title">4. Arquitectura de Redes y Protocolos</h2>
+            
+            <h3>I. Información General</h3>
+            <div class="grid-info">
+                <div class="info-item"><strong>Código</strong>EST316</div>
+                <div class="info-item"><strong>Prerrequisito</strong>ELE311 - Arquitectura de Computadoras</div>
+                <div class="info-item"><strong>Horas Lectivas</strong>02h Teóricas, 02h Prácticas (Total 04h)</div>
+                <div class="info-item"><strong>Créditos</strong>03</div>
+                <div class="info-item"><strong>Ciclo</strong>VI</div>
+                <div class="info-item"><strong>Área Curricular</strong>Estudios de especialidad</div>
+                <div class="info-item"><strong>Docente</strong>APAZA TARQUI ALEJANDRO (Nombrado, Profesor Principal)</div>
+                <div class="info-item"><strong>Especialidad</strong>Ing. Estadístico, Sistemas e Informática</div>
+            </div>
 
-<heading id="metodologia">Metodología</heading>
-<div class="pub">
-<ul>
-<li>Aprendizaje basado en proyectos.</li>
-<li>Trabajo colaborativo por equipos.</li>
-<li>Uso obligatorio de GitHub, GitHub Projects y Notion.</li>
-<li>Aplicación de Scrum, Kanban, PMBOK y metodologías híbridas.</li>
-<li>Desarrollo de portafolios digitales de proyectos.</li>
-<li>Asesoría continua y revisión semanal de avances.</li>
-<li>Presentaciones parciales y finales tipo Demo Day.</li>
-</ul>
-</div>
+            <h3>II. Unidades y Contenidos Destacados</h3>
+            <p>El curso capacita en el diseño e implementación de infraestructuras de red físicas y lógicas utilizando simuladores avanzados como Cisco Packet Tracer.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 20%;">Semana / Eje</th>
+                        <th style="width: 40%;">Criterio de Desempeño</th>
+                        <th style="width: 40%;">Temas Clave</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Semana 3</td><td>Identificación de tipos de redes para definir cobertura de telecomunicaciones.</td><td>PAN, LAN, MAN, WAN, WLAN, GAN, CAN, SAN, Internet, Intranet, Extranet.</td></tr>
+                    <tr><td>Semana 4</td><td>Aplicación de topologías lógicas y físicas de red.</td><td>Topologías físicas/lógicas, cableado estructurado, simulador Cisco Packet Tracer. EXAMEN ESCRITO (100%).</td></tr>
+                    <tr><td>Semana 5</td><td>Reconocimiento de protocolos y diferenciación entre modelos arquitectónicos.</td><td>Protocolos, Capas del Modelo OSI y Modelo TCP/IP: interfaces, servicios.</td></tr>
+                    <tr><td>Semana 6</td><td>Reconocimiento de estructuras de la capa física de redes.</td><td>Capa física de OSI, medios de comunicación, señalización y codificación.</td></tr>
+                    <tr><td>Semana 7</td><td>Aplicación práctica de estándares de comunicación.</td><td>Tecnología Ethernet y conmutación de datos.</td></tr>
+                </tbody>
+            </table>
 
-<hr/>
+            <h3>III. Metodología y Calificación</h3>
+            <p>Se emplean clases magistrales, aprendizaje basado en problemas, laboratorios síncronos/asíncronos (Meet/Webex) y proyectos de investigación.</p>
+            <div class="formula">
+                Promedio Unidad 1 = 40% (EVI 1) + 60% (EVI 2 - Examen escrito)<br>
+                Promedio Unidad 2 = 30% (EVI 1) + 20% (EVI 2) + 50% (EVI 3)<br>
+                Promedio Final = 50% (I UPP) + 50% (II UPP)
+            </div>
 
-<heading id="evaluacion">Evaluación</heading>
-<div class="pub">
-<ul>
-<li><b>Portafolio digital en Notion y GitHub:</b> 25%</li>
-<li><b>Entregable parcial de la Unidad I:</b> 25%</li>
-<li><b>Seguimiento, avances y gestión del proyecto:</b> 20%</li>
-<li><b>Producto final, informe y sustentación:</b> 25%</li>
-<li><b>Participación, autoevaluación y coevaluación:</b> 5%</li>
-</ul>
-</div>
+            <h3>IV. Fuentes Bibliográficas</h3>
+            <ul class="bibliografia">
+                <li>Apaza T., A. (2002). Redes y Teleproceso, primera edición. Puno. Perú.</li>
+                <li>Domingo, A. A. (2013). Redes locales. McGraw-Hill.</li>
+                <li>Dordoigne, J. (2015). Redes informáticas - Nociones fundamentales. Ediciones Eni.</li>
+            </ul>
+        </section>
 
-<hr/>
+        <section id="aprendizaje-nosup" class="curso-section">
+            <h2 class="curso-title">5. Aprendizaje No Supervisado</h2>
+            
+            <h3>I. Información General</h3>
+            <div class="grid-info">
+                <div class="info-item"><strong>Código</strong>EST314</div>
+                <div class="info-item"><strong>Prerrequisito</strong>EST312 - Estadística Computacional</div>
+                <div class="info-item"><strong>Horas Lectivas</strong>03h Teóricas, 02h Prácticas (Total 05h)</div>
+                <div class="info-item"><strong>Créditos</strong>04</div>
+                <div class="info-item"><strong>Ciclo</strong>VI</div>
+                <div class="info-item"><strong>Nivel de Desempeño</strong><span class="badge badge-avanzado">AVANZADO</span></div>
+                <div class="info-item"><strong>Docente</strong>ALEMAN GONZALES LEONID (Nombrado-ordinario, Profesor Asociado)</div>
+                <div class="info-item"><strong>Especialidad</strong>Ingeniería de Software / Ciencia de Datos</div>
+            </div>
 
-<heading id="entregables">Entregables</heading>
-<div class="pub">
-<ul>
-<li>Idea de proyecto TIC.</li>
-<li>Project Charter.</li>
-<li>Portafolio en Notion.</li>
-<li>Repositorio en GitHub.</li>
-<li>Tablero Kanban o Scrum.</li>
-<li>Bitácora de avances.</li>
-<li>Cronograma del proyecto.</li>
-<li>Matriz de riesgos.</li>
-<li>Informe técnico o científico.</li>
-<li>Producto funcional, prototipo, dashboard, análisis estadístico, modelo de datos o solución implementada.</li>
-<li>Presentación final del proyecto.</li>
-</ul>
-</div>
+            <h3>II. Sumilla y Desarrollo Temático</h3>
+            <p>Curso teórico-práctico enfocado en descubrir patrones ocultos en datos sin etiquetar utilizando programación avanzada en la nube (Google Colab, Jupyter Notebooks) mediante lenguajes R y Python.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Semana</th>
+                        <th style="width: 40%;">Criterio de Desempeño</th>
+                        <th style="width: 45%;">Conocimientos / Temas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Semana 1</td><td>Comprende el aprendizaje automático, metodología y aplicaciones reales.</td><td>Introducción al Machine Learning. Tipos de aprendizaje: supervisado vs no supervisado. Aplicaciones reales.</td></tr>
+                    <tr><td>Semana 2</td><td>Comprende los proyectos basados en flujos de trabajo no supervisados.</td><td>Metodología para aprendizaje no supervisado, flujo y elementos de trabajo.</td></tr>
+                    <tr><td>Semana 3</td><td>Prepara los datos con criterios adecuados para el modelamiento.</td><td>Preprocesamiento, preparación, limpieza, transformación de datos y codificación.</td></tr>
+                    <tr><td>Semana 4</td><td>Analiza propiedades de transformación de datos.</td><td>Data Wrangling y Feature Engineering (Ingeniería de características).</td></tr>
+                    <tr><td>Semana 5</td><td>Comprende la reducción de dimensionalidad de forma idónea.</td><td>Técnicas de reducción de dimensionalidad y extracción de características (PCA, etc.).</td></tr>
+                    <tr><td>Semana 10</td><td>Analiza problemas de agrupamiento y plantea soluciones.</td><td>Técnicas de clustering. Concepto de distancia. Métodos particionales: K-means, K-medoids.</td></tr>
+                    <tr><td>Semana 11</td><td>Comprende problemas de agrupamiento jerárquico y por densidad.</td><td>Agglomerative Clustering. Métodos basados en densidad: DBSCAN, HDBSCAN.</td></tr>
+                    <tr><td>Semana 12</td><td>Comprende modelos basados en distribuciones probabilísticas y grafos.</td><td>Gaussian Mixture Model (GMM). Spectral Clustering.</td></tr>
+                    <tr><td>Semana 13</td><td>Comprende problemas de agrupamiento con técnicas avanzadas.</td><td>Agrupamiento difuso: Fuzzy C-Means. Métodos basados en subespacios: CLIQUE, PROCLUS. Deep Clustering moderno: Deep Embedded Clustering (DEC).</td></tr>
+                </tbody>
+            </table>
 
-<hr/>
+            <h3>III. Evaluación y Criterios</h3>
+            <p>Se evalúa bajo cuatro dimensiones aplicadas: Metodología, Reducción de dimensionalidad, Agrupamiento y Reglas de decisiones mediante proyectos reales presentados bajo normas APA/IEEE.</p>
+            <div class="formula">
+                Promedio Unidad 1 = 50% (EVI 1) + 50% (EVI 2) <br>
+                Promedio Unidad 2 = 50% (EVI 1) + 50% (EVI 2) <br>
+                Promedio Final = 50% (Unidad 1) + 50% (Unidad 2)
+            </div>
+        </section>
 
-<heading id="recursos">Recursos</heading>
-<div class="pub">
-<ul>
-<li><a href="https://github.com/" target="_blank">GitHub</a></li>
-<li><a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects" target="_blank">GitHub Projects</a></li>
-<li><a href="https://notion.so/" target="_blank">Notion</a></li>
-<li><a href="https://www.pmi.org/" target="_blank">Project Management Institute</a></li>
-<li><a href="https://www.scrum.org/" target="_blank">Scrum.org</a></li>
-<li><a href="https://trello.com/" target="_blank">Trello</a></li>
-<li><a href="https://www.atlassian.com/software/jira" target="_blank">Jira</a></li>
-<li><a href="https://colab.research.google.com/" target="_blank">Google Colab</a></li>
-</ul>
-</div>
+        <section id="series-tiempo" class="curso-section">
+            <h2 class="curso-title">6. Series de Tiempo</h2>
+            
+            <h3>I. Información General</h3>
+            <div class="grid-info">
+                <div class="info-item"><strong>Código</strong>EST317</div>
+                <div class="info-item"><strong>Prerrequisito</strong>EST208 - Estadística No Paramétrica</div>
+                <div class="info-item"><strong>Horas Lectivas</strong>03h Teóricas, 02h Prácticas (Total 05h)</div>
+                <div class="info-item"><strong>Créditos</strong>04</div>
+                <div class="info-item"><strong>Ciclo</strong>VI</div>
+                <div class="info-item"><strong>Nivel de Desempeño</strong><span class="badge badge-avanzado">AVANZADO</span></div>
+                <div class="info-item"><strong>Docente</strong>LLUEN VALLEJOS CESAR AUGUSTO (Nombrado, Principal a D.E.)</div>
+                <div class="info-item"><strong>Especialidad</strong>Lic. en Estadística</div>
+            </div>
 
-<hr/>
+            <h3>II. Logros de Aprendizaje por Unidad</h3>
+            <ul>
+                <li><strong>Unidad 1:</strong> Produce información de pronósticos mediante la metodología Box-Jenkins con los modelos AR, MA, ARMA, ARIMA para realidades en investigación orientada a la toma de decisiones.</li>
+                <li><strong>Unidad 2:</strong> Produce información de pronósticos mediante la metodología Box-Jenkins, redes neuronales (modelo SARIMA) y modelos heterocedásticos ARCH y GARCH.</li>
+            </ul>
 
-<heading id="bibliografia">Bibliografía</heading>
-<div class="pub">
-<ul>
-<li>Project Management Institute. PMBOK® Guide – Seventh Edition. PMI, 2021.</li>
-<li>Schwaber, K. & Sutherland, J. The Scrum Guide. 2020.</li>
-<li>Schwalbe, K. Information Technology Project Management. Cengage Learning.</li>
-<li>Meredith, J. R. & Mantel, S. J. Project Management: A Managerial Approach.</li>
-<li>Pressman, R. Ingeniería del Software: Un enfoque práctico.</li>
-<li>Kerzner, H. Project Management: A Systems Approach to Planning, Scheduling, and Controlling.</li>
-<li>Wysocki, R. Effective Project Management: Traditional, Agile, Extreme, Hybrid.</li>
-</ul>
-</div>
+            <h3>III. Sistema de Evaluación</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Unidad</th>
+                        <th>Evidencias Requeridas</th>
+                        <th>Ponderación</th>
+                        <th>Técnicas / Instrumentos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Unidad 1</td>
+                        <td>
+                            - Evidencia 1: Etapas 1, 2, 3 del modelamiento de series temporales lineales (50%).<br>
+                            - Evidencia 2: Aplica modelos SARIMA al análisis de una serie temporal (50%).
+                        </td>
+                        <td>50%</td>
+                        <td>Observación, Evaluación, Exposición / Rúbrica, Lista de cotejo, Examen.</td>
+                    </tr>
+                    <tr>
+                        <td>Unidad 2</td>
+                        <td>
+                            - Evidencias prácticas y de investigación sobre modelos ARCH, GARCH y Redes Neuronales aplicadas a finanzas o economía.
+                        </td>
+                        <td>50%</td>
+                        <td>Modelamiento con software especializado e Inteligencia Artificial.</td>
+                    </tr>
+                </tbody>
+            </table>
 
-<hr/>
+            <h3>IV. Fuentes de Información Básica</h3>
+            <ul class="bibliografia">
+                <li>Guerrero, V. M. (2014). Análisis estadístico y pronóstico de series de tiempo económicas. (3ra edición).</li>
+                <li>Hanke, J. E. & Wichern, D. W. (2006). Pronóstico en los negocios. (8va edición). Prentice Hall.</li>
+                <li>Uriel, E. (1985). Análisis de series temporales. Editorial Paraninfo. España.</li>
+                <li>Ramos, A., Villasante, F. H., Tumi, N. & Alvarez, T. P. (2016). Series de Tiempo: Software de análisis con Eviews.</li>
+            </ul>
+        </section>
+    </main>
 
-<heading id="contacto">Contacto</heading>
-<p>permelro@unap.edu.pe</p>
-
-<hr/>
-
-<div id="footer">
-<heading>&copy; 2026 UNAP - FIEI - Ingeniería Estadística e Informática</heading>
-</div>
-
-</td>
-</tr>
-</table>
-<div style="height: 40px;"></div>
-</div>
-
-<script xml:space="preserve" language="JavaScript">hideallbibs();</script>
+    <script>
+        // Script opcional para dinamismo en el menú lateral
+        const links = document.querySelectorAll('nav ul li a');
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                links.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
-```
