@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EST314 · Aprendizaje No Supervisado — FINESI UNAP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12202A;
+  --ink-soft:#2A3D46;
+  --paper:#E9E4D6;
+  --paper-soft:#F4F1E8;
+  --gold:#C9922E;
+  --teal:#3E8E86;
+  --brick:#A9462E;
+  --line:rgba(18,32,42,0.14);
+  --max:920px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--gold);color:var(--ink);}
+a{color:var(--teal);}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px;}
+
+/* --- Pallay motif (Andean chevron), used as signature divider --- */
+.pallay{
+  height:14px;
+  width:100%;
+  background-image:repeating-linear-gradient(135deg, var(--gold) 0 6px, transparent 6px 12px),
+                    repeating-linear-gradient(45deg, var(--teal) 0 6px, transparent 6px 12px);
+  background-size:24px 14px, 24px 14px;
+  background-position:0 0, 12px 0;
+  background-repeat:repeat-x;
+  opacity:0.9;
+}
+
+header.top{
+  background:var(--ink);
+  color:var(--paper-soft);
+  padding:56px 0 34px;
+  position:relative;
+}
+header.top .eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12.5px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin:0 0 14px;
+}
+header.top h1{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:clamp(30px,4.6vw,46px);
+  line-height:1.05;
+  margin:0 0 18px;
+  max-width:14ch;
+}
+.meta-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:18px 28px;
+  margin-top:30px;
+  padding-top:26px;
+  border-top:1px solid rgba(233,228,214,0.18);
+}
+.meta-grid dt{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:rgba(233,228,214,0.55);
+  margin:0 0 4px;
+}
+.meta-grid dd{margin:0;font-size:14.5px;color:var(--paper-soft);}
+.backlink{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'IBM Plex Mono',monospace;font-size:12.5px;
+  color:rgba(233,228,214,0.75);text-decoration:none;
+  margin-bottom:22px;
+}
+.backlink:hover{color:var(--gold);}
+
+main{padding:46px 0 90px;}
+section{margin-bottom:52px;}
+h2.section-title{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:24px;
+  display:flex;align-items:baseline;gap:12px;
+  margin:0 0 18px;
+}
+h2.section-title .num{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:13px;color:var(--brick);
+}
+p.lede{font-size:16px;max-width:70ch;}
+.card{
+  background:var(--paper-soft);
+  border:1px solid var(--line);
+  border-radius:2px;
+  padding:26px 28px;
+}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+@media (max-width:640px){.two-col{grid-template-columns:1fr;}}
+
+/* unit block */
+.unit{
+  border-left:3px solid var(--teal);
+  padding-left:22px;
+  margin-bottom:34px;
+}
+.unit.unit-2{border-left-color:var(--gold);}
+.unit-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;}
+.unit-tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  background:var(--ink);color:var(--paper-soft);
+  padding:3px 9px;border-radius:2px;
+}
+.unit.unit-2 .unit-tag{background:var(--brick);}
+.unit-title{font-family:'Fraunces',serif;font-size:19px;font-weight:600;margin:0;}
+.unit-goal{color:var(--ink-soft);font-size:14.5px;margin:6px 0 16px;max-width:68ch;}
+.unit-dates{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);
+  margin-bottom:14px;
+}
+
+details.week{
+  border-bottom:1px solid var(--line);
+}
+details.week summary{
+  cursor:pointer;
+  list-style:none;
+  padding:11px 0;
+  display:flex;gap:14px;align-items:baseline;
+  font-size:14.5px;
+}
+details.week summary::-webkit-details-marker{display:none;}
+details.week summary .wk{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;color:var(--teal);flex:0 0 62px;
+}
+.unit.unit-2 details.week summary .wk{color:var(--brick);}
+details.week summary .crit{font-weight:500;flex:1;}
+details.week summary .chevron{color:var(--ink-soft);transition:transform .15s ease;}
+details.week[open] summary .chevron{transform:rotate(90deg);}
+.week-body{padding:0 0 16px 76px;font-size:13.5px;color:var(--ink-soft);}
+.week-body .know{margin:0 0 8px;}
+.week-body .fb{
+  font-family:'IBM Plex Mono',monospace;font-size:11.5px;
+  color:var(--brick);
+}
+.week-empty{padding:10px 0;color:var(--ink-soft);font-size:13px;font-style:italic;}
+
+/* evaluation table */
+table.eval{width:100%;border-collapse:collapse;font-size:13.5px;}
+table.eval th, table.eval td{
+  text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);
+  vertical-align:top;
+}
+table.eval th{
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+  text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-soft);
+}
+table.eval td.pct{font-family:'IBM Plex Mono',monospace;color:var(--brick);white-space:nowrap;}
+
+.formula{
+  font-family:'IBM Plex Mono',monospace;font-size:13px;
+  background:var(--paper);border:1px dashed var(--line);
+  padding:12px 16px;margin:10px 0;
+}
+
+/* bibliography */
+ul.biblio{margin:0;padding:0;list-style:none;}
+ul.biblio li{
+  padding:9px 0;border-bottom:1px solid var(--line);
+  font-size:13.5px;padding-left:20px;position:relative;
+}
+ul.biblio li::before{
+  content:"—";position:absolute;left:0;color:var(--gold);
+}
+ul.biblio a{word-break:break-all;}
+.bib-cat{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;
+  letter-spacing:0.08em;color:var(--teal);margin:20px 0 4px;
+}
+.bib-cat:first-child{margin-top:0;}
+
+footer{
+  background:var(--ink);color:rgba(233,228,214,0.6);
+  padding:30px 0;font-size:12.5px;font-family:'IBM Plex Mono',monospace;
+}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+.note{
+  font-size:13px;color:var(--ink-soft);font-style:italic;
+}
+</style>
+</head>
+<body>
+<div class="pallay"></div>
+<header class="top">
+  <div class="wrap">
+    <a class="backlink" href="index.html">← Semestre VI · FINESI</a>
+    <p class="eyebrow">EST314 · Ciclo VI · Semestre 2026-I</p>
+    <h1>Aprendizaje No Supervisado</h1>
+    <dl class="meta-grid">
+      <div><dt>Docente</dt><dd>Alemán Gonzales, Leonid — Nombrado-ordinario, Profesor Asociado · Ingeniería de Software / Ciencia de Datos</dd></div>
+      <div><dt>Créditos</dt><dd>04</dd></div>
+      <div><dt>Horas</dt><dd>03h teóricas + 02h prácticas (05 h totales)</dd></div>
+      <div><dt>Nivel</dt><dd>Avanzado</dd></div>
+      <div><dt>Modalidad</dt><dd>Presencial</dd></div>
+      <div><dt>Duración</dt><dd>30 de marzo – 31 de julio de 2026</dd></div>
+      <div><dt>Prerrequisito</dt><dd>EST312 — Estadística Computacional</dd></div>
+      <div><dt>Aula</dt><dd>Aula 201, Pabellón A + Laboratorio 02</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section>
+      <h2 class="section-title"><span class="num">01</span>Sumilla</h2>
+      <p class="lede">Curso teórico-práctico del área de estudios de especialidad orientado a proponer y aplicar técnicas de preparación, preprocesamiento, reducción de dimensionalidad, agrupamiento y reglas de asociación sobre un conjunto de datos. Unidad I: metodología, técnicas de preprocesamiento y reducción de dimensionalidad. Unidad II: técnicas de agrupamiento, reglas de asociación y aplicaciones avanzadas.</p>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span class="num">02</span>Logro de aprendizaje del curso</h2>
+      <div class="card"><p class="lede" style="margin:0;">Aplica adecuadamente las técnicas de aprendizaje no supervisado para el desarrollo aplicado a casos avanzados, en cuatro dimensiones: metodología, reducción de dimensionalidad, agrupamiento y reglas de decisiones.</p></div>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span class="num">03</span>Unidades didácticas</h2>
+      <div class="unit">
+  <div class="unit-head">
+    <span class="unit-tag">Unidad 1</span>
+    <h3 class="unit-title">Metodología, preprocesamiento y reducción de dimensionalidad</h3>
+  </div>
+  <p class="unit-goal">Aplica adecuadamente la metodología y las técnicas de preprocesamiento de datos y reducción de dimensionalidad de las variables para casos de aplicación.</p>
+  <div class="unit-dates">30 mar – 1 jun 2026 · 45 h totales (04 h virtuales) · avance 55%</div>
+  <details class="week">
+  <summary><span class="wk">Sem. 1</span><span class="crit">Comprende el aprendizaje automático, la metodología, sus variantes y aplicaciones reales</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Introducción al aprendizaje automático, tipos de aprendizaje automático, aprendizaje no supervisado, diferencias respecto a otros tipos, aplicaciones reales.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 2</span><span class="crit">Comprende los proyectos basados en la metodología del aprendizaje no supervisado</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Proyectos con la metodología para aprendizaje no supervisado, flujo de trabajo y elementos de trabajo.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 3</span><span class="crit">Prepara los datos con criterio adecuado para el modelamiento</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Preprocesamiento, preparación de datos, limpieza, transformación de datos y codificación de variables.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 4</span><span class="crit">Analiza técnicas de Data Wrangling e ingeniería de características</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Data wrangling. Feature engineering.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 5</span><span class="crit">Comprende la aplicación de la reducción de dimensionalidad y extracción de características</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Métodos clásicos, lineales y no lineales (manifold learning): PCA, SVD, LDA, t-SNE, UMAP, Isomap, LLE.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 6</span><span class="crit">Comprende la aplicación de redes neuronales en reducción de dimensionalidad</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Redes neuronales. Reducción de dimensionalidad basada en redes neuronales.</p><div class="fb">Evaluación de técnicas básicas ANS (50%)</div></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 7</span><span class="crit">Comprende la reducción de dimensionalidad con métodos modernos</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Técnicas probabilísticas, basadas en grafos: Factor Análisis, Gaussian Processes Latent Variable Models, Laplacian Eigenmaps.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 8</span><span class="crit">Comprende la extracción de características avanzada</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">SimCLR, extracción para detección de anomalías, Isolation Forest, One-class SVM.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 9</span><span class="crit">Presenta los avances de sus aplicaciones en forma de proyecto</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Avance del proyecto de aplicación. Evaluación. Retroalimentación.</p><div class="fb">Evaluación parcial de reducción de dimensionalidad (50%)</div></div>
+</details>
+</div>
+      <div class="unit unit-2">
+  <div class="unit-head">
+    <span class="unit-tag">Unidad 2</span>
+    <h3 class="unit-title">Agrupamiento, reglas de asociación y aplicaciones avanzadas</h3>
+  </div>
+  <p class="unit-goal">Aplica adecuadamente técnicas de agrupamiento y reglas de asociación del aprendizaje no supervisado en aplicaciones reales.</p>
+  <div class="unit-dates">1 jun – 31 jul 2026 · 45 h totales (04 h virtuales) · avance 100%</div>
+  <details class="week">
+  <summary><span class="wk">Sem. 10</span><span class="crit">Analiza y comprende los problemas de análisis de agrupamiento (clustering)</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Concepto de distancia en diferentes contextos. Métodos particionales: k-means, k-medoids.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 11</span><span class="crit">Analiza y comprende los problemas de clustering (continuación)</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Métodos jerárquicos (Agglomerative Clustering), métodos basados en densidad: DBSCAN, HDBSCAN.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 12</span><span class="crit">Comprende los problemas de clustering y plantea soluciones</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Métodos basados en modelos probabilísticos (Gaussian Mixture Model), basados en grafos (Spectral Clustering).</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 13</span><span class="crit">Comprende técnicas avanzadas de clustering</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Agrupamiento difuso (Fuzzy C-Means), métodos basados en subespacios: CLIQUE, PROCLUS, Deep Clustering, Deep Embedded Clustering (DEC).</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 14</span><span class="crit">Analiza las propiedades de las reglas de asociación y sus aplicaciones</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Métricas fundamentales y avanzadas (support, confidence, importance, conviction, leverage, Jaccard). Algoritmos clásicos: Apriori, FP-Growth, Eclat.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 15</span><span class="crit">Comprende variantes y extensiones de las reglas de asociación</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Asociación ponderada, negativa, alto orden, reglas secuenciales: PrefixSpan, SPADE.</p><div class="fb">Evaluación de técnicas avanzadas de agrupamiento (50%)</div></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 16</span><span class="crit">Analiza nuevos enfoques de las reglas de asociación</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Datos continuos, big data, enfoques basados en grafos y aprendizaje profundo.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 17</span><span class="crit">Integra el desarrollo del proyecto y la idoneidad metodológica final</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Integración y revisión de proyectos pertinentes al aprendizaje no supervisado.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 18</span><span class="crit">Presenta y defiende el proyecto desarrollado</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Dominio del tema, explicación clara y defensa apropiada.</p><div class="fb">Evaluación final de Aprendizaje No Supervisado (50%)</div></div>
+</details>
+</div>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span class="num">04</span>Evaluación</h2>
+      <table class="eval">
+  <thead><tr><th>Unidad</th><th>Logro de aprendizaje</th><th>Evidencias</th><th>Ponderación</th></tr></thead>
+  <tbody><tr><td>1</td><td>Metodología, preprocesamiento y reducción de dimensionalidad</td><td>Evaluación de técnicas básicas ANS (50%) + Evaluación parcial de reducción de dimensionalidad (50%)</td><td class="pct">50%</td></tr>
+<tr><td>2</td><td>Agrupamiento, reglas de asociación y aplicaciones avanzadas</td><td>Evaluación de técnicas avanzadas de agrupamiento (50%) + Evaluación final ANS (50%)</td><td class="pct">50%</td></tr></tbody>
+</table>
+      <p class="note" style="margin-top:14px;">Proyecto final presentado en semanas 7–8 y del 20 al 31 de julio de 2026: resolución de test valorativo y defensa apropiada del trabajo, sobre un caso aplicado en las cuatro dimensiones del curso.</p>
+      <div class="formula">Promedio parcial unidad = 50% (EVI 1) + 50% (EVI 2)</div><div class="formula">Promedio final = 50% (I UPP) + 50% (II UPP)</div>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span class="num">05</span>Fuentes de información</h2>
+      <div class="bib-cat">Básica</div><ul class="biblio">
+<li>Correa, J. (2014). <em>Introducción a la Estadística Bayesiana con R</em>. UN de Medellín, Colombia.</li>
+<li>Correa, J. (2019). <em>Introducción a la Estadística Bayesiana</em>. Instituto Tecnológico Metropolitano.</li>
+<li>Barber, D. (2017). <em>Bayesian Reasoning and Machine Learning</em>, 3ª ed. Cambridge University Press.</li>
+<li>Theodoridis, S. (2017). <em>Machine Learning: A Bayesian and Optimization Perspective</em>. Elsevier.</li>
+<li>Hoff, P. (2009). <em>A First Course in Bayesian Statistical Methods</em>. Springer, USA.</li>
+<li>Lambert, B. (2014). <em>A Student's Guide to Bayesian Statistics</em>. SAGE.</li>
+<li>Albert, J. (2012). <em>Bayesian Computation with R</em>, 2ª ed. Use R Series, Springer.</li>
+<li>Christensen, R. (2012). <em>Bayesian Ideas and Data Analysis</em>. CRC Press.</li>
+<li>Koski, T. &amp; Noble, J. (2010). <em>Bayesian Networks: An Introduction</em>. Wiley.</li>
+<li>Goodfellow, I. &amp; Bengio, Y. (2016). <em>Deep Learning</em>. MIT Press, USA.</li>
+<li>Bishop, C. (2006). <em>Pattern Recognition and Machine Learning</em>. Springer, USA.</li>
+<li>Duda, R., Hart, P. &amp; Stork, D. (2000). <em>Pattern Classification</em>, 2ª ed. Wiley Interscience.</li>
+</ul>
+<div class="bib-cat">Complementaria</div><ul class="biblio">
+<li>Hastie, T., Tibshirani, R. &amp; Friedman, J. (2014). <em>The Elements of Statistical Learning</em>, 2ª ed. Springer.</li>
+<li>Glover, F. &amp; Kochenberger, G. (1998). <em>Algoritmos e Heurísticas</em>. Universidad Federal Fluminense, Brasil.</li>
+<li>Russell, S. &amp; Norvig, P. (2014). <em>Inteligencia Artificial: Un Enfoque Moderno</em>, 3ª ed. Prentice Hall, México.</li>
+<li>Stanton, J. (2017). <em>Reasoning with Data. Traditional and Bayesian Statistics Using R</em>. The Guilford Press.</li>
+</ul>
+<div class="bib-cat">Electrónica</div><ul class="biblio">
+<li><a href="http://www.cs.sunysb.edu/~algorith/" target="_blank" rel="noopener">Algorithms and heuristics</a></li>
+<li><a href="https://realpython.com/tutorials/machine-learning/" target="_blank" rel="noopener">Real Python — Machine Learning Tutorials</a></li>
+</ul>
+<div class="bib-cat">Producción del docente</div><ul class="biblio">
+<li>Guías de programación con Python para Machine Learning (2019).</li>
+</ul>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>FINESI · UNAP · Código de estudiante 236567</span>
+    <span>EST314 — actualizado julio 2026</span>
+  </div>
+</footer>
+</body>
+</html>

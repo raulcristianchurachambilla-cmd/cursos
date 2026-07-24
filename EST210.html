@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EST210 · Modelos Lineales — FINESI UNAP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12202A;
+  --ink-soft:#2A3D46;
+  --paper:#E9E4D6;
+  --paper-soft:#F4F1E8;
+  --gold:#C9922E;
+  --teal:#3E8E86;
+  --brick:#A9462E;
+  --line:rgba(18,32,42,0.14);
+  --max:920px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--gold);color:var(--ink);}
+a{color:var(--teal);}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px;}
+
+/* --- Pallay motif (Andean chevron), used as signature divider --- */
+.pallay{
+  height:14px;
+  width:100%;
+  background-image:repeating-linear-gradient(135deg, var(--gold) 0 6px, transparent 6px 12px),
+                    repeating-linear-gradient(45deg, var(--teal) 0 6px, transparent 6px 12px);
+  background-size:24px 14px, 24px 14px;
+  background-position:0 0, 12px 0;
+  background-repeat:repeat-x;
+  opacity:0.9;
+}
+
+header.top{
+  background:var(--ink);
+  color:var(--paper-soft);
+  padding:56px 0 34px;
+  position:relative;
+}
+header.top .eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12.5px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin:0 0 14px;
+}
+header.top h1{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:clamp(30px,4.6vw,46px);
+  line-height:1.05;
+  margin:0 0 18px;
+  max-width:14ch;
+}
+.meta-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:18px 28px;
+  margin-top:30px;
+  padding-top:26px;
+  border-top:1px solid rgba(233,228,214,0.18);
+}
+.meta-grid dt{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:rgba(233,228,214,0.55);
+  margin:0 0 4px;
+}
+.meta-grid dd{margin:0;font-size:14.5px;color:var(--paper-soft);}
+.backlink{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'IBM Plex Mono',monospace;font-size:12.5px;
+  color:rgba(233,228,214,0.75);text-decoration:none;
+  margin-bottom:22px;
+}
+.backlink:hover{color:var(--gold);}
+
+main{padding:46px 0 90px;}
+section{margin-bottom:52px;}
+h2.section-title{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:24px;
+  display:flex;align-items:baseline;gap:12px;
+  margin:0 0 18px;
+}
+h2.section-title .num{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:13px;color:var(--brick);
+}
+p.lede{font-size:16px;max-width:70ch;}
+.card{
+  background:var(--paper-soft);
+  border:1px solid var(--line);
+  border-radius:2px;
+  padding:26px 28px;
+}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+@media (max-width:640px){.two-col{grid-template-columns:1fr;}}
+
+/* unit block */
+.unit{
+  border-left:3px solid var(--teal);
+  padding-left:22px;
+  margin-bottom:34px;
+}
+.unit.unit-2{border-left-color:var(--gold);}
+.unit-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;}
+.unit-tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  background:var(--ink);color:var(--paper-soft);
+  padding:3px 9px;border-radius:2px;
+}
+.unit.unit-2 .unit-tag{background:var(--brick);}
+.unit-title{font-family:'Fraunces',serif;font-size:19px;font-weight:600;margin:0;}
+.unit-goal{color:var(--ink-soft);font-size:14.5px;margin:6px 0 16px;max-width:68ch;}
+.unit-dates{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);
+  margin-bottom:14px;
+}
+
+details.week{
+  border-bottom:1px solid var(--line);
+}
+details.week summary{
+  cursor:pointer;
+  list-style:none;
+  padding:11px 0;
+  display:flex;gap:14px;align-items:baseline;
+  font-size:14.5px;
+}
+details.week summary::-webkit-details-marker{display:none;}
+details.week summary .wk{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;color:var(--teal);flex:0 0 62px;
+}
+.unit.unit-2 details.week summary .wk{color:var(--brick);}
+details.week summary .crit{font-weight:500;flex:1;}
+details.week summary .chevron{color:var(--ink-soft);transition:transform .15s ease;}
+details.week[open] summary .chevron{transform:rotate(90deg);}
+.week-body{padding:0 0 16px 76px;font-size:13.5px;color:var(--ink-soft);}
+.week-body .know{margin:0 0 8px;}
+.week-body .fb{
+  font-family:'IBM Plex Mono',monospace;font-size:11.5px;
+  color:var(--brick);
+}
+.week-empty{padding:10px 0;color:var(--ink-soft);font-size:13px;font-style:italic;}
+
+/* evaluation table */
+table.eval{width:100%;border-collapse:collapse;font-size:13.5px;}
+table.eval th, table.eval td{
+  text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);
+  vertical-align:top;
+}
+table.eval th{
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+  text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-soft);
+}
+table.eval td.pct{font-family:'IBM Plex Mono',monospace;color:var(--brick);white-space:nowrap;}
+
+.formula{
+  font-family:'IBM Plex Mono',monospace;font-size:13px;
+  background:var(--paper);border:1px dashed var(--line);
+  padding:12px 16px;margin:10px 0;
+}
+
+/* bibliography */
+ul.biblio{margin:0;padding:0;list-style:none;}
+ul.biblio li{
+  padding:9px 0;border-bottom:1px solid var(--line);
+  font-size:13.5px;padding-left:20px;position:relative;
+}
+ul.biblio li::before{
+  content:"—";position:absolute;left:0;color:var(--gold);
+}
+ul.biblio a{word-break:break-all;}
+.bib-cat{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;
+  letter-spacing:0.08em;color:var(--teal);margin:20px 0 4px;
+}
+.bib-cat:first-child{margin-top:0;}
+
+footer{
+  background:var(--ink);color:rgba(233,228,214,0.6);
+  padding:30px 0;font-size:12.5px;font-family:'IBM Plex Mono',monospace;
+}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+.note{
+  font-size:13px;color:var(--ink-soft);font-style:italic;
+}
+</style>
+</head>
+<body>
+<div class="pallay"></div>
+<header class="top">
+  <div class="wrap">
+    <a class="backlink" href="index.html">← Semestre VI · FINESI</a>
+    <p class="eyebrow">EST210 · Ciclo VI · Semestre 2026-I</p>
+    <h1>Modelos Lineales</h1>
+    <dl class="meta-grid">
+      <div><dt>Docente</dt><dd>Morillos Valderrama, Santos Octavio — Nombrado, Principal D.E. · Doctor en Estadística e Informática</dd></div>
+      <div><dt>Créditos</dt><dd>05</dd></div>
+      <div><dt>Horas</dt><dd>04h teóricas + 02h prácticas (06 h totales)</dd></div>
+      <div><dt>Nivel</dt><dd>Avanzado</dd></div>
+      <div><dt>Modalidad</dt><dd>Presencial</dd></div>
+      <div><dt>Duración</dt><dd>30 de marzo – 31 de julio de 2026</dd></div>
+      <div><dt>Prerrequisito</dt><dd>EST307 — Modelos Discretos</dd></div>
+      <div><dt>Aula</dt><dd>Aula 205, Pabellón antiguo</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section>
+      <h2 class="section-title"><span class="num">01</span>Sumilla</h2>
+      <p class="lede">Curso teórico-práctico del área de estudios de especialidad orientado a la solución de problemas reales mediante la formalización y perfeccionamiento de modelos matemáticos, apoyado en el avance tecnológico y la computación. Se divide en dos unidades: Distribución de formas cuadráticas y Modelos de rango completo (unidad 1); Modelos de correlación y Modelos de rango no completo (unidad 2).</p>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span class="num">02</span>Logro de aprendizaje del curso</h2>
+      <div class="card"><p class="lede" style="margin:0;">Explica los fundamentos teóricos para el diseño y análisis de modelos de rango completo y no completo, contrastando pruebas de hipótesis a fin de tomar decisiones correspondientes al estado de la naturaleza.</p></div>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span class="num">03</span>Unidades didácticas</h2>
+      <div class="unit">
+  <div class="unit-head">
+    <span class="unit-tag">Unidad 1</span>
+    <h3 class="unit-title">Distribución de formas cuadráticas y modelos de rango completo</h3>
+  </div>
+  <p class="unit-goal">Determina la distribución de formas cuadráticas de variables aleatorias y analiza en forma teórica y práctica los modelos lineales de regresión aplicando inferencias en sus parámetros.</p>
+  <div class="unit-dates">30 mar – 1 jun 2026 · 54 h totales (04 h virtuales) · avance 50%</div>
+  <details class="week">
+  <summary><span class="wk">Sem. 1</span><span class="crit">Identifica las distribuciones de formas cuadráticas</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Introducción a las formas cuadráticas.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 2</span><span class="crit">Analiza la función de densidad multivariante</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Momentos, F central y no central. Otras distribuciones no centrales.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 3</span><span class="crit">Analiza y desarrolla las distribuciones de formas cuadráticas</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Distribuciones e independencia de formas cuadráticas.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 4</span><span class="crit">Analiza y elabora modelos de rango completo</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Estimación con k variables x. Métodos de estimación.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 5</span><span class="crit">Elabora y analiza la tabla de análisis de varianza</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Partición de la suma total de cuadrados. Correlación múltiple. Propiedades distribucionales.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 6</span><span class="crit">Aplica las tablas de ANOVA a modelos de regresión lineal</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Análisis de varianza para modelos de regresión. Intervalos de confianza.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 7</span><span class="crit">Elabora hipótesis y estadísticas para un modelo lineal general</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Prueba de hipótesis lineal. Cuatro hipótesis comunes. Modelos reducidos.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 8</span><span class="crit">Elabora modelos de regresión polinomial y realiza pruebas de hipótesis</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Regresión polinomial. Estimación de la respuesta media. Intervalos de confianza. Prueba de la función respuesta.</p><div class="fb">Evidencia 1: Trabajos (50%)</div></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 9</span><span class="crit">Construye polinomios ortogonales y selecciona el mejor conjunto de variables independientes</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Polinomios ortogonales. Selección del mejor conjunto de variables independientes.</p><div class="fb">Evidencia 2: Examen escrito (50%)</div></div>
+</details>
+</div>
+      <div class="unit unit-2">
+  <div class="unit-head">
+    <span class="unit-tag">Unidad 2</span>
+    <h3 class="unit-title">Modelos de correlación y modelos de rango no completo</h3>
+  </div>
+  <p class="unit-goal">Realiza pruebas de hipótesis para los modelos de correlación parcial y múltiple. Distingue las diferencias entre los modelos de rango completo y no completo.</p>
+  <div class="unit-dates">1 jun – 31 jul 2026 · 54 h totales (04 h virtuales) · avance 50%</div>
+  <details class="week">
+  <summary><span class="wk">Sem. 10</span><span class="crit">Estudia y analiza los modelos de correlación y realiza pruebas de hipótesis</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Modelos de correlación. Pruebas de hipótesis. Intervalos de confianza. Correlación parcial y múltiple.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 11</span><span class="crit">Construye y analiza los modelos de ANOVA, realiza pruebas de hipótesis</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Tipos de clasificaciones. Efectos principales e interactivos. Clasificaciones cruzadas y anidadas. Matriz inversa generalizada.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 12</span><span class="crit">Estudia los modelos de rango no completo y realiza pruebas de hipótesis</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Modelos de clasificación a un criterio. Propiedades distribucionales. Pruebas de hipótesis.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 13</span><span class="crit">Elabora funciones estimables y realiza pruebas de hipótesis</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Funciones estimables. Intervalos de confianza. Prueba de estimabilidad.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 14</span><span class="crit">Elabora y construye prueba de hipótesis y estadística F general</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Hipótesis lineal general. Análisis de varianza. Contrastes independientes y ortogonales.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 15</span><span class="crit">Analiza los modelos de clasificación a un criterio y realiza pruebas de hipótesis</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Modelo de clasificación a un criterio. Funciones estimables. Intervalos de confianza.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 16</span><span class="crit">Identifica los modelos de clasificación anidada a dos criterios</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Análisis de varianza. Funciones estimables. Pruebas de hipótesis.</p></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 17</span><span class="crit">Construye modelos de clasificación cruzada a dos criterios</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Clasificación cruzada a dos criterios sin interacción. Análisis de varianza. Funciones estimables.</p><div class="fb">Evidencia 3: Trabajos (50%)</div></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 18</span><span class="crit">Identifica los modelos balanceados y de componentes de varianza</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">Modelo balanceado, modelos fijos, aleatorios y mixtos. Análisis de varianza.</p><div class="fb">Evidencia 4: Examen escrito (50%)</div></div>
+</details>
+</div>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span class="num">04</span>Evaluación</h2>
+      <table class="eval">
+  <thead><tr><th>Unidad</th><th>Logro de aprendizaje</th><th>Evidencias</th><th>Ponderación</th></tr></thead>
+  <tbody><tr><td>1</td><td>Distribución de formas cuadráticas y modelos de rango completo</td><td>Trabajos (50%) + Examen escrito (50%)</td><td class="pct">50%</td></tr>
+<tr><td>2</td><td>Modelos de correlación y modelos de rango no completo</td><td>Trabajos (50%) + Examen escrito (50%)</td><td class="pct">50%</td></tr></tbody>
+</table>
+      <p class="note" style="margin-top:14px;">Técnicas de observación con rúbrica y lista de cotejo, exámenes escritos al cierre de cada unidad.</p>
+      <div class="formula">Promedio parcial unidad = 50% (EVI 1) + 50% (EVI 2)</div><div class="formula">Promedio final = 50% (I UPP) + 50% (II UPP)</div>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span class="num">05</span>Fuentes de información</h2>
+      <div class="bib-cat">Básica</div><ul class="biblio">
+<li>Daniel, W. (1991). <em>Bioestadística</em>, 4ª ed. LIMUSA. México.</li>
+<li>Fahrmeir, L., Kneib, T., Lang, S. &amp; Marx, B. (2013). <em>Regression</em>. Springer, New York.</li>
+<li>Graybill, F. (1961). <em>An Introduction to Linear Statistical Models</em>, Vol. I. McGraw-Hill, USA.</li>
+<li>Hair, J., Anderson, R., Tatham, R. &amp; Black, W. (1999). <em>Análisis Multivariante</em>, 5ª ed. Prentice Hall, Madrid.</li>
+<li>Montgomery, D., Peck, E. &amp; Vining, G. (2006). <em>Introducción al Análisis de Regresión Lineal</em>, 3ª ed. Continental, México.</li>
+<li>Searle, S. &amp; Gruber, M. (2017). <em>Linear Models</em>, 2ª ed. John Wiley, New Jersey.</li>
+</ul>
+<div class="bib-cat">Complementaria</div><ul class="biblio">
+<li>Neter, J., Wasserman, W. &amp; Kutner, M. (1983). <em>Applied Linear Regression Models</em>. Richard Irwin, USA.</li>
+<li>Rencher, A. &amp; Schaalje, B. (2008). <em>Linear Models in Statistics</em>, 2ª ed. John Wiley, New Jersey.</li>
+</ul>
+<div class="bib-cat">Electrónica</div><ul class="biblio">
+<li><a href="https://mascvuex.unex.es" target="_blank" rel="noopener">mascvuex.unex.es — material del curso</a></li>
+<li><a href="https://recursos.salonesvirtuales.com" target="_blank" rel="noopener">recursos.salonesvirtuales.com — material del curso</a></li>
+</ul>
+<div class="bib-cat">Producción del docente</div><ul class="biblio">
+<li>Guías de estudio y práctica del curso.</li>
+</ul>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>FINESI · UNAP · Código de estudiante 236567</span>
+    <span>EST210 — actualizado julio 2026</span>
+  </div>
+</footer>
+</body>
+</html>

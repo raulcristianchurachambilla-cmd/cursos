@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EST317 · Series de Tiempo — FINESI UNAP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12202A;
+  --ink-soft:#2A3D46;
+  --paper:#E9E4D6;
+  --paper-soft:#F4F1E8;
+  --gold:#C9922E;
+  --teal:#3E8E86;
+  --brick:#A9462E;
+  --line:rgba(18,32,42,0.14);
+  --max:920px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--gold);color:var(--ink);}
+a{color:var(--teal);}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px;}
+
+/* --- Pallay motif (Andean chevron), used as signature divider --- */
+.pallay{
+  height:14px;
+  width:100%;
+  background-image:repeating-linear-gradient(135deg, var(--gold) 0 6px, transparent 6px 12px),
+                    repeating-linear-gradient(45deg, var(--teal) 0 6px, transparent 6px 12px);
+  background-size:24px 14px, 24px 14px;
+  background-position:0 0, 12px 0;
+  background-repeat:repeat-x;
+  opacity:0.9;
+}
+
+header.top{
+  background:var(--ink);
+  color:var(--paper-soft);
+  padding:56px 0 34px;
+  position:relative;
+}
+header.top .eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12.5px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin:0 0 14px;
+}
+header.top h1{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:clamp(30px,4.6vw,46px);
+  line-height:1.05;
+  margin:0 0 18px;
+  max-width:14ch;
+}
+.meta-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:18px 28px;
+  margin-top:30px;
+  padding-top:26px;
+  border-top:1px solid rgba(233,228,214,0.18);
+}
+.meta-grid dt{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:rgba(233,228,214,0.55);
+  margin:0 0 4px;
+}
+.meta-grid dd{margin:0;font-size:14.5px;color:var(--paper-soft);}
+.backlink{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'IBM Plex Mono',monospace;font-size:12.5px;
+  color:rgba(233,228,214,0.75);text-decoration:none;
+  margin-bottom:22px;
+}
+.backlink:hover{color:var(--gold);}
+
+main{padding:46px 0 90px;}
+section{margin-bottom:52px;}
+h2.section-title{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:24px;
+  display:flex;align-items:baseline;gap:12px;
+  margin:0 0 18px;
+}
+h2.section-title .num{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:13px;color:var(--brick);
+}
+p.lede{font-size:16px;max-width:70ch;}
+.card{
+  background:var(--paper-soft);
+  border:1px solid var(--line);
+  border-radius:2px;
+  padding:26px 28px;
+}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+@media (max-width:640px){.two-col{grid-template-columns:1fr;}}
+
+/* unit block */
+.unit{
+  border-left:3px solid var(--teal);
+  padding-left:22px;
+  margin-bottom:34px;
+}
+.unit.unit-2{border-left-color:var(--gold);}
+.unit-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;}
+.unit-tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  background:var(--ink);color:var(--paper-soft);
+  padding:3px 9px;border-radius:2px;
+}
+.unit.unit-2 .unit-tag{background:var(--brick);}
+.unit-title{font-family:'Fraunces',serif;font-size:19px;font-weight:600;margin:0;}
+.unit-goal{color:var(--ink-soft);font-size:14.5px;margin:6px 0 16px;max-width:68ch;}
+.unit-dates{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);
+  margin-bottom:14px;
+}
+
+details.week{
+  border-bottom:1px solid var(--line);
+}
+details.week summary{
+  cursor:pointer;
+  list-style:none;
+  padding:11px 0;
+  display:flex;gap:14px;align-items:baseline;
+  font-size:14.5px;
+}
+details.week summary::-webkit-details-marker{display:none;}
+details.week summary .wk{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;color:var(--teal);flex:0 0 62px;
+}
+.unit.unit-2 details.week summary .wk{color:var(--brick);}
+details.week summary .crit{font-weight:500;flex:1;}
+details.week summary .chevron{color:var(--ink-soft);transition:transform .15s ease;}
+details.week[open] summary .chevron{transform:rotate(90deg);}
+.week-body{padding:0 0 16px 76px;font-size:13.5px;color:var(--ink-soft);}
+.week-body .know{margin:0 0 8px;}
+.week-body .fb{
+  font-family:'IBM Plex Mono',monospace;font-size:11.5px;
+  color:var(--brick);
+}
+.week-empty{padding:10px 0;color:var(--ink-soft);font-size:13px;font-style:italic;}
+
+/* evaluation table */
+table.eval{width:100%;border-collapse:collapse;font-size:13.5px;}
+table.eval th, table.eval td{
+  text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);
+  vertical-align:top;
+}
+table.eval th{
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+  text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-soft);
+}
+table.eval td.pct{font-family:'IBM Plex Mono',monospace;color:var(--brick);white-space:nowrap;}
+
+.formula{
+  font-family:'IBM Plex Mono',monospace;font-size:13px;
+  background:var(--paper);border:1px dashed var(--line);
+  padding:12px 16px;margin:10px 0;
+}
+
+/* bibliography */
+ul.biblio{margin:0;padding:0;list-style:none;}
+ul.biblio li{
+  padding:9px 0;border-bottom:1px solid var(--line);
+  font-size:13.5px;padding-left:20px;position:relative;
+}
+ul.biblio li::before{
+  content:"—";position:absolute;left:0;color:var(--gold);
+}
+ul.biblio a{word-break:break-all;}
+.bib-cat{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;
+  letter-spacing:0.08em;color:var(--teal);margin:20px 0 4px;
+}
+.bib-cat:first-child{margin-top:0;}
+
+footer{
+  background:var(--ink);color:rgba(233,228,214,0.6);
+  padding:30px 0;font-size:12.5px;font-family:'IBM Plex Mono',monospace;
+}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+.note{
+  font-size:13px;color:var(--ink-soft);font-style:italic;
+}
+</style>
+</head>
+<body>
+<div class="pallay"></div>
+<header class="top">
+  <div class="wrap">
+    <a class="backlink" href="index.html">← Semestre VI · FINESI</a>
+    <p class="eyebrow">EST317 · Ciclo VI · Semestre 2026-I</p>
+    <h1>Series de Tiempo</h1>
+    <dl class="meta-grid">
+      <div><dt>Docente</dt><dd>Lluén Vallejos, César Augusto — Nombrado, Principal a D.E. · Lic. en Estadística</dd></div>
+      <div><dt>Créditos</dt><dd>04</dd></div>
+      <div><dt>Horas</dt><dd>03h teóricas + 02h prácticas (05 h totales)</dd></div>
+      <div><dt>Nivel</dt><dd>Avanzado</dd></div>
+      <div><dt>Modalidad</dt><dd>Presencial</dd></div>
+      <div><dt>Duración</dt><dd>30 de marzo – 31 de julio de 2026</dd></div>
+      <div><dt>Prerrequisito</dt><dd>EST208 — Estadística No Paramétrica</dd></div>
+      <div><dt>Aula</dt><dd>Aula 205, Pabellón Antiguo (teoría y práctica con laptops)</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section>
+      <h2 class="section-title"><span class="num">01</span>Sumilla</h2>
+      <p class="lede">Curso teórico-práctico del área de estudios de especialidad orientado a desarrollar habilidades para obtener modelos univariantes que apoyen la toma de decisiones. Unidad 1: métodos de suavizamiento, técnicas de descomposición, modelos lineales estacionarios (AR, MA, ARMA) y no estacionarios (ARIMA). Unidad 2: modelos estacionales (SAR, SMA, SARMA, SARIMA), modelos heterocedásticos (ARCH, GARCH), modelos multivariantes y redes neuronales.</p>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span class="num">02</span>Logro de aprendizaje del curso</h2>
+      <div class="card"><p class="lede" style="margin:0;">El estudiante demostrará una actitud responsable y ética en la producción de pronósticos para la toma de decisiones que resuelvan los problemas de las realidades en investigación.</p></div>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span class="num">03</span>Unidades didácticas</h2>
+      <div class="unit">
+  <div class="unit-head">
+    <span class="unit-tag">Unidad 1</span>
+    <h3 class="unit-title">Modelos lineales estacionarios y no estacionarios (Box-Jenkins)</h3>
+  </div>
+  <p class="unit-goal">Produce información de pronósticos mediante la metodología Box-Jenkins con los modelos AR, MA, ARMA y ARIMA para realidades en investigación orientada a la toma de decisiones.</p>
+  <div class="unit-dates">30 mar – 1 jun 2026 · 45 h totales (02 h virtuales) · avance 50%</div>
+  <details class="week">
+  <summary><span class="wk">Sem. 1 – 5</span><span class="crit">Desarrollo de fundamentos y etapas de la metodología Box-Jenkins (contenido detallado por semana no especificado en el sílabo oficial)</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">El sílabo consigna la evidencia asociada pero no describe el criterio ni el conocimiento semana a semana en este tramo.</p><div class="fb">Evidencia 1: Aplica las etapas 1, 2 y 3 del modelamiento de series de tiempo lineales (50%)</div></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 6 – 9</span><span class="crit">Aplicación de modelos SARIMA al análisis de una serie de tiempo (contenido detallado por semana no especificado en el sílabo oficial)</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">El sílabo consigna la evidencia asociada pero no describe el criterio ni el conocimiento semana a semana en este tramo.</p><div class="fb">Evidencia 2: Aplica modelos SARIMA al análisis de una serie de tiempo (50%)</div></div>
+</details>
+</div>
+      <div class="unit unit-2">
+  <div class="unit-head">
+    <span class="unit-tag">Unidad 2</span>
+    <h3 class="unit-title">Modelos estacionales, heterocedásticos y multivariantes</h3>
+  </div>
+  <p class="unit-goal">Produce información de pronósticos mediante la metodología Box-Jenkins, redes neuronales, modelo SARIMA y modelos heterocedásticos (ARCH, GARCH) para realidades en investigación orientada a la toma de decisiones.</p>
+  <div class="unit-dates">1 jun – 31 jul 2026 · 45 h totales (02 h virtuales) · avance 50%</div>
+  <details class="week">
+  <summary><span class="wk">Sem. 10 – 14</span><span class="crit">Aplicación de modelos heterocedásticos a series de tiempo (contenido detallado por semana no especificado en el sílabo oficial)</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">El sílabo consigna la evidencia asociada pero no describe el criterio ni el conocimiento semana a semana en este tramo.</p><div class="fb">Evidencia 3: Aplica modelos heterocedásticos a series de tiempo de realidades (50%)</div></div>
+</details>
+<details class="week">
+  <summary><span class="wk">Sem. 15 – 18</span><span class="crit">Aplicación de modelos con variables exógenas y multivariadas (contenido detallado por semana no especificado en el sílabo oficial)</span><span class="chevron">›</span></summary>
+  <div class="week-body"><p class="know">El sílabo consigna la evidencia asociada pero no describe el criterio ni el conocimiento semana a semana en este tramo.</p><div class="fb">Evidencia 4: Aplica modelos con variables exógenas y multivariadas a realidades (50%)</div></div>
+</details>
+</div>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span class="num">04</span>Evaluación</h2>
+      <table class="eval">
+  <thead><tr><th>Unidad</th><th>Logro de aprendizaje</th><th>Evidencias</th><th>Ponderación</th></tr></thead>
+  <tbody><tr><td>1</td><td>Modelos lineales estacionarios y no estacionarios (Box-Jenkins)</td><td>Evidencia 1 (50%) + Evidencia 2 (50%)</td><td class="pct">50%</td></tr>
+<tr><td>2</td><td>Modelos estacionales, heterocedásticos y multivariantes</td><td>Evidencia 3 (50%) + Evidencia 4 (50%)</td><td class="pct">50%</td></tr></tbody>
+</table>
+      <p class="note" style="margin-top:14px;">Evidencias de aprendizaje del semestre: EV1 (semana 1, 20%) aspectos básicos de series de tiempo; EV2 (semanas 2–5, 30%) exploración de patrones y análisis clásico; EV3 (semanas 6–9, 50%) ecuación de pronósticos válida; EV4 (semanas 10–14, 50%) ecuación de pronósticos para serie estacionaria/no estacionaria, estacional o no estacional; EV5 (semanas 15–18, 50%) ecuación de pronósticos para serie heterocedástica.</p>
+      <div class="formula">Promedio parcial unidad = 50% (EVI 1) + 50% (EVI 2)</div><div class="formula">Promedio final = 50% (I UPP) + 50% (II UPP)</div>
+    </section>
+
+    <section>
+      <h2 class="section-title"><span class="num">05</span>Fuentes de información</h2>
+      <div class="bib-cat">Básica</div><ul class="biblio">
+<li>Guerrero, V. M. (2014). <em>Análisis estadístico y pronóstico de series de tiempo económicas</em>, 3ª ed. Jit Press, México.</li>
+<li>Hanke, J. E. &amp; Wichern, D. W. (2006). <em>Pronóstico en los negocios</em>, 8ª ed. Prentice Hall, México.</li>
+<li>Uriel, E. (1985). <em>Análisis de series temporales</em>. Paraninfo, España.</li>
+<li>Peña, D. &amp; Sánchez, D. (2000). <em>Estadística, modelos y métodos: modelos lineales y series temporales</em>, 2ª ed. Alianza Universidad, España.</li>
+<li>Wooldridge, J. (2006). <em>Introducción a la econometría</em>, 2ª ed. Paraninfo, España.</li>
+</ul>
+<div class="bib-cat">Complementaria</div><ul class="biblio">
+<li>Gujarati, D. (2004). <em>Econometría</em>, 4ª ed. Mc Graw Hill, México.</li>
+<li>Monteverde, E. &amp; Rengifo, E. (2011). <em>Estadísticas y econometría financiera</em>. CENGAGE, Lima.</li>
+<li>Pérez, C. (2008). <em>Econometría Avanzada, técnicas y herramientas</em>, 1ª ed. Pearson Educations, España.</li>
+<li>Ramos, A., Villasante, F. H., Tumi, N. &amp; Álvarez, T. P. (2016). <em>Series de Tiempo: Software de análisis con Eviews</em>, 1ª ed. Editorial Altiplano, Puno.</li>
+</ul>
+<div class="bib-cat">Electrónica</div><ul class="biblio">
+<li><a href="https://machinelearningmastery.com/arima-for-time-series-forecasting-with-python/" target="_blank" rel="noopener">Machine Learning Mastery — ARIMA for time series forecasting</a></li>
+<li><a href="https://www.analyticsvidhya.com/blog/2018/08/auto-arima-time-series-modeling-python-r/" target="_blank" rel="noopener">Analytics Vidhya — Auto ARIMA time series modeling</a></li>
+<li><a href="https://machinelearningmastery.com/develop-arch-and-garch-models-for-time-series-forecasting-in-python/" target="_blank" rel="noopener">Machine Learning Mastery — ARCH and GARCH models</a></li>
+</ul>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>FINESI · UNAP · Código de estudiante 236567</span>
+    <span>EST317 — actualizado julio 2026</span>
+  </div>
+</footer>
+</body>
+</html>
