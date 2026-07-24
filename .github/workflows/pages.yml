@@ -1,8 +1,9 @@
-name: Deploy Pages
+name: Deploy GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -12,14 +13,16 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy:
+    runs-on: ubuntu-latest
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,10 +30,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload solo la carpeta FINESI/SEMESTRE_VI como artefacto del sitio
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './FINESI/SEMESTRE_VI'
+          path: ./FINESI/SEMESTRE_VI
 
       - name: Deploy to GitHub Pages
         id: deployment
