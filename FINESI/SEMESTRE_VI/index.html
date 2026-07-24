@@ -48,59 +48,9 @@ a{color:var(--teal);}
 header.top{
   background:var(--ink);
   color:var(--paper-soft);
-  padding:44px 0 34px;
+  padding:56px 0 34px;
   position:relative;
 }
-
-/* --- Institutional logo row --- */
-.logo-row{
-  display:flex;
-  align-items:center;
-  gap:22px;
-  margin-bottom:34px;
-  padding-bottom:28px;
-  border-bottom:1px solid rgba(233,228,214,0.14);
-}
-.logo-badge{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:56px;
-  height:56px;
-  background:var(--paper-soft);
-  border-radius:50%;
-  border:1px solid rgba(233,228,214,0.25);
-  padding:8px;
-  flex:0 0 auto;
-}
-.logo-badge img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  display:block;
-}
-.logo-divider{
-  width:1px;
-  height:34px;
-  background:rgba(233,228,214,0.25);
-  flex:0 0 auto;
-}
-.logo-text{display:flex;flex-direction:column;gap:2px;}
-.logo-text .institution{
-  font-family:'Fraunces',serif;
-  font-weight:600;
-  font-size:15.5px;
-  color:var(--paper-soft);
-  line-height:1.2;
-}
-.logo-text .faculty{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:11px;
-  letter-spacing:0.06em;
-  text-transform:uppercase;
-  color:var(--gold);
-}
-
 header.top .eyebrow{
   font-family:'IBM Plex Mono',monospace;
   font-size:12.5px;
@@ -253,11 +203,6 @@ footer{
   padding:30px 0;font-size:12.5px;font-family:'IBM Plex Mono',monospace;
 }
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
-footer .foot-logos{display:flex;align-items:center;gap:10px;}
-footer .foot-logos img{
-  height:22px;width:22px;object-fit:contain;
-  border-radius:50%;background:var(--paper-soft);padding:3px;
-}
 
 .note{
   font-size:13px;color:var(--ink-soft);font-style:italic;
@@ -280,31 +225,12 @@ footer .foot-logos img{
 .course-card h3{font-family:'Fraunces',serif;font-size:19px;margin:0 0 10px;line-height:1.2;}
 .cdoc{margin:0;font-size:13px;color:var(--ink-soft);}
 .ccred{margin:6px 0 0;font-size:12.5px;font-family:'IBM Plex Mono',monospace;color:var(--ink-soft);}
-
-@media (max-width:480px){
-  .logo-row{gap:14px;}
-  .logo-badge{width:46px;height:46px;}
-  .logo-text .institution{font-size:13.5px;}
-}
 </style>
 </head>
 <body>
 <div class="pallay"></div>
 <header class="top">
   <div class="wrap">
-    <div class="logo-row">
-      <div class="logo-badge">
-        <img src="https://tse1.mm.bing.net/th/id/OIP.TXKfTkp8vNLYclsW8_kQHQHaHa?r=0&pid=Api&P=0&h=180" alt="Logo UNAP" loading="lazy">
-      </div>
-      <div class="logo-divider"></div>
-      <div class="logo-badge">
-        <img src="https://tse1.mm.bing.net/th/id/OIP.12I7ttrqyck1ysHKq0CvjwHaHm?r=0&pid=Api&P=0&h=180" alt="Logo FINESI" loading="lazy">
-      </div>
-      <div class="logo-text">
-        <span class="institution">Universidad Nacional del Altiplano</span>
-        <span class="faculty">Facultad de Ingeniería Estadística e Informática</span>
-      </div>
-    </div>
     <p class="eyebrow">FINESI · UNAP · Ciclo VI · Semestre 2026-I</p>
     <h1 style="max-width:20ch;">Sílabos del semestre</h1>
     <p class="hero-note">Seis cursos, del 30 de marzo al 31 de julio de 2026. Cada tarjeta abre el sílabo completo: sumilla, unidades por semana, evaluación y bibliografía, tal como figuran en el documento oficial de la facultad.</p>
@@ -375,11 +301,7 @@ footer .foot-logos img{
 </main>
 <footer>
   <div class="wrap">
-    <div class="foot-logos">
-      <img src="https://tse1.mm.bing.net/th/id/OIP.TXKfTkp8vNLYclsW8_kQHQHaHa?r=0&pid=Api&P=0&h=180" alt="UNAP" loading="lazy">
-      <img src="https://tse1.mm.bing.net/th/id/OIP.12I7ttrqyck1ysHKq0CvjwHaHm?r=0&pid=Api&P=0&h=180" alt="FINESI" loading="lazy">
-      <span>FINESI · UNAP · Código de estudiante 236567</span>
-    </div>
+    <span>FINESI · UNAP · Código de estudiante 236567</span>
     <span>Semestre_VI — actualizado julio 2026</span>
   </div>
 </footer>
